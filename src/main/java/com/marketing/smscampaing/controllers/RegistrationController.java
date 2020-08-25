@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/admin/register")
 public class RegistrationController {
     private final RegistrationService registrationService;
 
