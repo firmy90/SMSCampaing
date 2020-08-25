@@ -1,0 +1,21 @@
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (51,1960-08-28',now(),'FEMALE','Xing',’Ingemarsdotter',now(),19);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (52,1987-05-28',now(),'FEMALE','Beatrice',’Christiansdotter',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (53,1986-08-09',now(),'MALE','Ådne',’Stenlund',now(),12);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (54,1967-05-17',now(),'MALE','Frank',’Thorsen',now(),110);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (55,1960-01-25',now(),'MALE','Evert',’Kraft',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (56,1996-12-13',now(),'MALE','Teodor',’Ekblad',now(),18);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (57,1974-11-20',now(),'FEMALE','Dorota',’Bay',now(),116);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (58,1998-01-08',now(),'FEMALE','Åsta',’Lundwall',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (59,1968-08-07',now(),'FEMALE','Fatemeh',’Clase',now(),15);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (60,1985-03-24',now(),'MALE','Bill',’Lundholm',now(),110);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (61,1959-10-19',now(),'FEMALE','Ula',’Swoboda',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (62,1971-12-02',now(),'FEMALE','Heideliese',’Reitz',now(),15);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (63,1955-02-03',now(),'MALE','Steffen',’Gleich',now(),19);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (64,1997-12-08',now(),'MALE','Veith',’Guth',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (65,1968-05-26',now(),'FEMALE','Elena',’Schweigert',now(),12);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (66,1957-07-05',now(),'FEMALE','Alin',’Schipper',now(),15);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (67,1973-01-28',now(),'FEMALE','Gerheide',’Döhring',now(),117);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (68,1986-05-14',now(),'MALE','Eddi',’Kersting',now(),13);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (69,1964-09-14',now(),'MALE','Franzpeter',’Schwaiger',now(),19);
+insert into clients(id, birthdate, created, gender, name, surname, updated, visible, occupation_id) values (70,1964-10-11',now(),'FEMALE','Oda',’Hild',now(),16);
+
