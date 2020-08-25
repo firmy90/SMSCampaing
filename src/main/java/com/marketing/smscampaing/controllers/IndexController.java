@@ -10,6 +10,6 @@ public class IndexController {
 
     @GetMapping
     public String showWelcomePage(){
-        return "/home-page";
+        return "index";
     }
 }

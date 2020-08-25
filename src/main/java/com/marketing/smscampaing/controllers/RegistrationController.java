@@ -26,7 +26,7 @@ public class RegistrationController {
     @GetMapping
     public String prepareRegistrationPage(Model model) {
         model.addAttribute("registrationData", new RegistrationDTO());
-        return "/registration-page";
+        return "registration-page";
     }
 
     @PostMapping
