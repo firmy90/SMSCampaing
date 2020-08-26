@@ -22,8 +22,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/generate/clients">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <a class="nav-link" href="/generate/clients"><i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Wybierz klientów do kampanii</span></a>
     </li>
 

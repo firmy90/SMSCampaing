@@ -1,7 +1,5 @@
 package com.marketing.smscampaing.model.domain.entity;
 
-import com.marketing.smscampaing.model.domain.entity.enums.PhonePurpose;
-import com.marketing.smscampaing.model.domain.entity.enums.PhoneType;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,11 +21,18 @@ public class Phone {
     @Column(name="number", nullable = false)
     @Size(max=15)
     private String number;
-    @Enumerated(EnumType.STRING)
-    private PhonePurpose purpose = PhonePurpose.UNKNOWN;
 
-    @Enumerated(EnumType.STRING)
-    private PhoneType type = PhoneType.UNKNOWN;
+    @ManyToOne
+    @JoinColumn(name="purpose_id")
+    private Purpose purpose;
+    @Column(name = "purpose_id", insertable = false, updatable = false)
+    private Long purposeId;
+
+    @ManyToOne
+    @JoinColumn(name="type_id")
+    private Type type;
+    @Column(name = "type_id", insertable = false, updatable = false)
+    private Long typeId;
 
     @ManyToOne
     @JoinColumn(name="country_id")

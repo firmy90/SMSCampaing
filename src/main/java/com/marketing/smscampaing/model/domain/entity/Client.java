@@ -1,6 +1,5 @@
 package com.marketing.smscampaing.model.domain.entity;
 
-import com.marketing.smscampaing.model.domain.entity.enums.ClientGender;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,9 +29,15 @@ public class Client {
     @DateTimeFormat
     private LocalDate birthdate;
 
-    @Enumerated(EnumType.STRING)
-    @NotNull
-    private ClientGender gender = ClientGender.UNKNOWN;
+//    @Enumerated(EnumType.STRING)
+//    @NotNull
+//    private ClientGender gender = ClientGender.UNKNOWN;
+    @ManyToOne
+    @JoinColumn(name="gender_id")
+    private ClientGender gender;
+    @Column(name = "gender_id", insertable = false, updatable = false)
+    private Long genderId;
+
     @DateTimeFormat
     private LocalDateTime created;
     @DateTimeFormat

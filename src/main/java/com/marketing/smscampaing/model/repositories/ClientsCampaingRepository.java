@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ClientsCampaingRepository extends JpaRepository<Client,Long> {
     @Query("select c from Client c join Phone p on c.id = p.id join Country country on p.countryId = country.id where c.visible=1 and p.visible=1 order by p.updated desc ")
-    List<Client> findFirst10ClientsOrderByUpdateDesc();
+    List<Client> findClientsPhonesCountryOrderByUpdateDesc();
 }
 
