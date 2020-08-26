@@ -8,7 +8,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
 
     <jsp:include page="/WEB-INF/views/fragments/header.jsp"/>
@@ -22,13 +22,13 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
+                <h1 class="h3 mb-0 text-gray-800">Rejestracja nowego użytkownika</h1>
 
-
-                <div class="row" style="margin-top: 40px">
-                    <div class="col-1"></div>
-                    <div class="col-10" style="padding-bottom: 20px"><h2>Rejestracja nowego użytkownika</h2></div>
-                    <div class="col-1"></div>
-                </div>
+<%--                <div class="row" style="margin-top: 40px">--%>
+<%--                    <div class="col-1"></div>--%>
+<%--                    <div class="col-10" style="padding-bottom: 20px"><h2>Rejestracja nowego użytkownika</h2></div>--%>
+<%--                    <div class="col-1"></div>--%>
+<%--                </div>--%>
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-6">

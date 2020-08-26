@@ -8,7 +8,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
 
 <jsp:include page="/WEB-INF/views/fragments/header.jsp"/>
@@ -22,6 +22,7 @@
                 <jsp:include page="/WEB-INF/views/fragments/topbar.jsp" />
                 <div class="container-fluid">
                     <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp" />
+                    <h1 class="h3 mb-0 text-gray-800">Witaj na stronie głównej</h1>
 
 
 
