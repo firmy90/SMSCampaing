@@ -30,8 +30,8 @@
                                 <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Client id</th>
-                                    <th>Country id</th>
+                                    <th>Klient</th>
+                                    <th>Państwo</th>
                                     <th>Numer telefonu</th>
                                     <th>Przeznaczenie jego użycia</th>
                                     <th>Typ numer</th>
@@ -41,8 +41,8 @@
                                 <c:forEach var="el" items="${phones}" varStatus="index">
                                     <tr>
                                         <td> <c:out value="${index.count}"/></td>
-                                        <td><c:out value="${el.clientId}"/></td>
-                                        <td><c:out value="${el.countryId}"/></td>
+                                        <td><c:out value="${el.client.name}"/>    <c:out value="${el.client.surname}"/></td>
+                                        <td><c:out value="${el.country.name}"/></td>
                                         <td><c:out value="${el.number}"/></td>
                                         <td><c:out value="${el.purpose}"/></td>
                                         <td><c:out value="${el.type}"/></td>
