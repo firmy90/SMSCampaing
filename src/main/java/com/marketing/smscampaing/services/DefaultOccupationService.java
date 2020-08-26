@@ -22,7 +22,7 @@ public class DefaultOccupationService implements OccupationService{
     @Override
     public List<OccupationDTO> showOccupations() {
         List<Occupation> occupations = occupationRepository.findAllOccupations();
-        log.info("Occupation list: {}", occupations.toString());
+        log.debug("Occupation list: {}", occupations.toString());
         ModelMapper modelMapperDefaultStrategy = new ModelMapper();
         return occupations.stream().map(occupation -> modelMapperDefaultStrategy.map(occupation,OccupationDTO.class)).collect(Collectors.toList());
 
