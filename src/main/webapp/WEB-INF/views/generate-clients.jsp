@@ -55,11 +55,16 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz płeć:</h6>
                             </div>
                             <div class="card-body">
-                                <label>Wybierz płeć</label>
-                                <input type="checkbox" id="scales" name="scales">
-                                <label for="scales">Scales</label>
-                                <input type="checkbox" id="horns" name="horns">
-                                <label for="horns">Horns</label>
+<%--                                <c:forEach var="el" items="${allGenders}">--%>
+<%--                                    <input type="checkbox" name=--%>
+<%--                                        <c:out value="${el.gender}"/>>--%>
+<%--                                    <label><c:out value="${el.gender}"/></label>--%>
+<%--                                </c:forEach>--%>
+
+                                <%--                                <input type="checkbox" id="scales" name="scales">--%>
+                                <%--                                <label for="scales">Scales</label>--%>
+                                <%--                                <input type="checkbox" id="horns" name="horns">--%>
+                                <%--                                <label for="horns">Horns</label>--%>
                             </div>
                         </div>
 
@@ -69,9 +74,17 @@
                             </div>
                             <div class="card-body">
                                 <select name="occupation" id="occupation" multiple>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
+                                    <c:forEach var="el" items="${allOccupations}">
+                                        <option value="<c:out value="${el.occupations}"/>"><c:out value="${el.occupation}"/></option>
+                                    </c:forEach>
                                 </select>
+
+
+
+<%--                                <select name="occupation" id="occupation" multiple>--%>
+<%--                                    <option value="volvo">Volvo</option>--%>
+<%--                                    <option value="saab">Saab</option>--%>
+<%--                                </select>--%>
                             </div>
                         </div>
 
@@ -84,8 +97,8 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allPurposes}">
-                                    <input type="checkbox" name=<c:out  value="${el.purpose}"/> >
-                                    <label><c:out  value="${el.purpose}"/></label>
+                                    <input type="checkbox" name= <c:out value="${el.purpose}"/> value="<c:out value="${el.purpose}"/>">
+                                    <label><c:out value="${el.purpose}"/></label>
                                 </c:forEach>
                             </div>
                         </div>
@@ -95,8 +108,8 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allTypes}">
-                                    <input type="checkbox" name=<c:out  value="${el.type}"/> >
-                                    <label><c:out  value="${el.type}"/></label>
+                                    <input type="checkbox" name= <c:out value="${el.type}"/> value="<c:out value="${el.type}"/>">
+                                    <label><c:out value="${el.type}"/></label>
                                 </c:forEach>
                             </div>
                         </div>

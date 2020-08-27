@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,7 +33,7 @@ public class Client {
 //    private ClientGender gender = ClientGender.UNKNOWN;
     @ManyToOne
     @JoinColumn(name="gender_id")
-    private ClientGender gender;
+    private Gender gender;
     @Column(name = "gender_id", insertable = false, updatable = false)
     private Long genderId;
 

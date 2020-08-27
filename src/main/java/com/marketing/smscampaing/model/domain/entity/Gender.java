@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Entity
 @Table(name="genders")
-public class ClientGender {
+public class Gender {
     @Id
     @GeneratedValue
     private Long id;
