@@ -22,7 +22,8 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
-                <form:form method="post" modelAttribute="clientFilter">
+                <form method="post" >
+<%--                <form:form method="post" modelAttribute="clientFilter">--%>
                 <div class="row">
                     <div class="col-lg-4">
                         <h1 class="h3 mb-4 text-gray-800">Generuj klientów na kampanię</h1>
@@ -46,8 +47,8 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz przedział wiekowy klientów:</h6>
                             </div>
                             <div class="card-body">
-                                <input class="form-control form-control-user" type="number" min="0" placeholder="Min" value="0">
-                                <input class="form-control form-control-user" type="number" min="0" placeholder="Max" value="0">
+                                <input class="form-control form-control-user" name="ageMin" type="number" min="0" step = "1" placeholder="Min" value="0">
+                                <input class="form-control form-control-user"  name="ageMax" type="number" min="0" step="1" placeholder="Max">
                             </div>
                         </div>
                         <div class="card shadow mb-4">
@@ -56,7 +57,7 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allGenders}">
-                                    <input type="checkbox" id="<c:out value="${el.gender}"/>" name= "<c:out value="${el.gender}"/>">
+                                    <input type="checkbox" value="<c:out value="${el.gender}"/>" name= "gender">
                                     <label><c:out value="${el.gender}"/></label>
                                 </c:forEach>
                             </div>
@@ -85,7 +86,7 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allPurposes}">
-                                    <input type="checkbox" name= <c:out value="${el.purpose}"/> value="<c:out value="${el.purpose}"/>">
+                                    <input type="checkbox" name= "purpose" value="<c:out value="${el.purpose}"/>">
                                     <label><c:out value="${el.purpose}"/></label>
                                 </c:forEach>
                             </div>
@@ -96,7 +97,7 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allTypes}">
-                                    <input type="checkbox" name= <c:out value="${el.type}"/> value="<c:out value="${el.type}"/>">
+                                    <input type="checkbox" name= "type" value="<c:out value="${el.type}"/>">
                                     <label><c:out value="${el.type}"/></label>
                                 </c:forEach>
                             </div>
@@ -116,7 +117,7 @@
                     </div>
                 </div>
                     <sec:csrfInput/>
-                </form:form>
+                </form>
 
             </div>
         </div>  <!-- check -->

@@ -5,14 +5,15 @@ import com.marketing.smscampaing.services.*;
 import com.marketing.smscampaing.services.generate.ClientsCampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller @Slf4j
 @AllArgsConstructor
@@ -28,14 +29,45 @@ public class ClientsCampaingController {
     private final PhonesNumberService phonesNumberService;
 
     @PostMapping
-    @ResponseBody
-    public String showLastClients(Model model){
-        List<PhoneDTO> phoneDTOS = phonesNumberService.showAllPhones();
-        log.info("phoneDTOS before mapping: {}", phoneDTOS.toString());
+    public String showLastClients(@RequestParam(required = false, defaultValue = "") String ageMin,
+                                  @RequestParam(required = false, defaultValue = "") String ageMax,
+                                  @RequestParam(required = false, defaultValue = "") @Param("gender") List<String> gender,
+                                  @RequestParam(required = false, defaultValue = "") @Param("occupation") List<String> occupation,
+                                  @RequestParam(required = false, defaultValue = "") @Param("purpose") List<String> purpose,
+                                  @RequestParam(required = false, defaultValue = "") @Param("type") List<String> type,
+                                  @RequestParam(required = false, defaultValue = "") @Param("country") List<String> country,
+                                  Model model){
+        log.info("RequestParam ageMin: {}", ageMin);
+        log.info("RequestParam ageMax: {}", ageMax);
+        log.info("RequestParam gender: {}", gender.toString());
+        log.info("RequestParam occupation: {}", occupation.toString());
+        log.info("RequestParam purpose: {}", purpose.toString());
+        log.info("RequestParam type: {}", type.toString());
+        log.info("RequestParam country: {}", country.toString());
+        LocalDate minDate = LocalDate.MIN;
+        LocalDate maxDate = LocalDate.MAX;
+        try{
+            int minInt = Integer.parseInt(ageMin);
+            maxDate = LocalDate.now().minusYears(minInt);
+            log.info("maxDate : {}", maxDate );
+        } catch (NumberFormatException ignored) {
+            log.info("AgeMin not a number: {}", ageMin);
+        }
+        try{
+            int maxInt = Integer.parseInt(ageMax);
+            minDate = LocalDate.now().minusYears(maxInt);
+            log.info("minDate : {}", minDate );
+        } catch (NumberFormatException ignored) {
+            log.info("AgeMax not a number: {}", ageMax);
+        }
+
+
+        List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(minDate, maxDate, gender,occupation,purpose,type,country);
+//        List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(ageMin, ageMax,gender,occupation,purpose,type,country);
+        log.info("phoneDTOS from query before mapping: {}", phoneDTOS.toString());
         model.addAttribute("phones",phoneDTOS);
-        log.info("phoneDTOS after mapping: {}", phoneDTOS.toString());
-        return phoneDTOS.toString();
-//        return "generate-clients";
+        log.info("phoneDTOS from query after mapping: {}", phoneDTOS.toString());
+        return "phones-page";
 
     }
 
