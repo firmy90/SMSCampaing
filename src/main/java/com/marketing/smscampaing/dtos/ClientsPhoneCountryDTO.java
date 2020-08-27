@@ -7,6 +7,7 @@ public class ClientsPhoneCountryDTO {
 //    private Client client;
     private String clientName;
     private String clientSurname;
+    private String clientGender;
     private String occupationOccupation;
     private String CountryName;
     private String phoneNumber;

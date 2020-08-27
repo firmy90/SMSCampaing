@@ -41,8 +41,12 @@ public class Client {
     private LocalDateTime created;
     @DateTimeFormat
     private LocalDateTime updated;
+
     @ManyToOne
+    @JoinColumn(name="occupation_id")
     private Occupation occupation;
+    @Column(name = "occupation_id", insertable = false, updatable = false)
+    private Long occupationId;
     private boolean visible = Boolean.TRUE;
 
     @PrePersist

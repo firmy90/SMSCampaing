@@ -46,8 +46,8 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz przedział wiekowy klientów:</h6>
                             </div>
                             <div class="card-body">
-                                <input type="number" min="0" placeholder="Min" value="0">
-                                <input type="number" min="0" placeholder="Max" value="0">
+                                <input class="form-control form-control-user" type="number" min="0" placeholder="Min" value="0">
+                                <input class="form-control form-control-user" type="number" min="0" placeholder="Max" value="0">
                             </div>
                         </div>
                         <div class="card shadow mb-4">
