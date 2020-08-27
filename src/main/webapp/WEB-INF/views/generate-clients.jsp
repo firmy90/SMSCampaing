@@ -22,24 +22,24 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
+                <form:form method="post" modelAttribute="clientFilter">
                 <div class="row">
                     <div class="col-lg-4">
                         <h1 class="h3 mb-4 text-gray-800">Generuj klientów na kampanię</h1>
                     </div>
-                    <form id="clientsform" method="post" modelAttribute="clients">
+
                         <div class="col-lg-4">
-                            <a href="#" method="post" class="btn btn-primary btn-icon-split">
+                            <button type="submit" class="btn btn-primary btn-icon-split">
                                 <span class="icon text-white-50">
                                        <i class="fas fa-flag"></i>
                                    </span>
                                 <span class="text">Generuj</span>
-                            </a>
+                            </button>
                         </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-4">
-                        <!-- <form> -->
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
@@ -55,16 +55,10 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz płeć:</h6>
                             </div>
                             <div class="card-body">
-<%--                                <c:forEach var="el" items="${allGenders}">--%>
-<%--                                    <input type="checkbox" name=--%>
-<%--                                        <c:out value="${el.gender}"/>>--%>
-<%--                                    <label><c:out value="${el.gender}"/></label>--%>
-<%--                                </c:forEach>--%>
-
-                                <%--                                <input type="checkbox" id="scales" name="scales">--%>
-                                <%--                                <label for="scales">Scales</label>--%>
-                                <%--                                <input type="checkbox" id="horns" name="horns">--%>
-                                <%--                                <label for="horns">Horns</label>--%>
+                                <c:forEach var="el" items="${allGenders}">
+                                    <input type="checkbox" id="<c:out value="${el.gender}"/>" name= "<c:out value="${el.gender}"/>">
+                                    <label><c:out value="${el.gender}"/></label>
+                                </c:forEach>
                             </div>
                         </div>
 
@@ -75,16 +69,10 @@
                             <div class="card-body">
                                 <select name="occupation" id="occupation" multiple>
                                     <c:forEach var="el" items="${allOccupations}">
-                                        <option value="<c:out value="${el.occupations}"/>"><c:out value="${el.occupation}"/></option>
+                                        <option value="<c:out value="${el.occupation}"/>"><c:out value="${el.occupation}"/></option>
                                     </c:forEach>
                                 </select>
 
-
-
-<%--                                <select name="occupation" id="occupation" multiple>--%>
-<%--                                    <option value="volvo">Volvo</option>--%>
-<%--                                    <option value="saab">Saab</option>--%>
-<%--                                </select>--%>
                             </div>
                         </div>
 
@@ -119,17 +107,19 @@
                             </div>
                             <div class="card-body">
                                 <select name="country" id="country" multiple>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
+                                    <c:forEach var="el" items="${allCountries}">
+                                        <option value="<c:out value="${el.countryName}"/>"><c:out value="${el.countryName}"/></option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
-                </form>
+                    <sec:csrfInput/>
+                </form:form>
 
             </div>
-
+        </div>  <!-- check -->
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>

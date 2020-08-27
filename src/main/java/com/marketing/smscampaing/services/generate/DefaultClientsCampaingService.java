@@ -5,9 +5,11 @@ import com.marketing.smscampaing.dtos.ClientsPhoneCountryDTO;
 import com.marketing.smscampaing.model.domain.entity.Client;
 import com.marketing.smscampaing.model.domain.entity.User;
 import com.marketing.smscampaing.model.repositories.ClientsCampaingRepository;
+import com.marketing.smscampaing.model.repositories.PhoneNumbersRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +32,7 @@ public class DefaultClientsCampaingService  implements ClientsCampaingService {
         List<Client> clientsPhonesCountryOrderByUpdateDesc = clientsCampaingRepository.findClientsPhonesCountryOrderByUpdateDesc();
         log.info("Clients before mapping from lastClients: {}", clientsPhonesCountryOrderByUpdateDesc);
         ModelMapper myModel = new ModelMapper();
+        myModel.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         List<ClientsPhoneCountryDTO> clients = clientsPhonesCountryOrderByUpdateDesc
                 .stream()
                 .map(el -> myModel.map(el, ClientsPhoneCountryDTO.class))

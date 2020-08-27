@@ -1,10 +1,7 @@
 package com.marketing.smscampaing.controllers.generate;
 
 import com.marketing.smscampaing.dtos.*;
-import com.marketing.smscampaing.services.OccupationService;
-import com.marketing.smscampaing.services.PurposeService;
-import com.marketing.smscampaing.services.SelectorsService;
-import com.marketing.smscampaing.services.TypeService;
+import com.marketing.smscampaing.services.*;
 import com.marketing.smscampaing.services.generate.ClientsCampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +23,18 @@ public class ClientsCampaingController {
     private final TypeService typeService;
     private final PurposeService purposeService;
     private final SelectorsService selectorsService;
+    private final GenderService genderService;
+    private final CountryService countryService;
+    private final PhonesNumberService phonesNumberService;
 
     @PostMapping
     @ResponseBody
     public String showLastClients(Model model){
-        List<ClientsPhoneCountryDTO> clientsPhoneCountryDTOS = clientsCampaingService.showLastClients();
-        model.addAttribute("clients", clientsPhoneCountryDTOS);
-        return clientsPhoneCountryDTOS.toString();
+        List<PhoneDTO> phoneDTOS = phonesNumberService.showAllPhones();
+        log.info("phoneDTOS before mapping: {}", phoneDTOS.toString());
+        model.addAttribute("phones",phoneDTOS);
+        log.info("phoneDTOS after mapping: {}", phoneDTOS.toString());
+        return phoneDTOS.toString();
 //        return "generate-clients";
 
     }
@@ -46,13 +48,12 @@ public class ClientsCampaingController {
         model.addAttribute("allTypes",allTypes);
         List<PurposeDTO> allPurposes = purposeService.findAllPurposes();
         model.addAttribute("allPurposes",allPurposes);
-        SelectorsDTO allSelectors = selectorsService.findAllSelectors();
-        log.info("allSelectors: {}", allSelectors.toString());
-        List<String> genderGender = allSelectors.getGenders();
-        model.addAttribute("allGenders",genderGender);
-        log.info("genders list: {}", genderGender.toString());
-        model.addAttribute("allOccupations",allSelectors.getOccupations());
-        log.info("occupations list: {}", allSelectors.getOccupations().toString());
+        List<GenderDTO> allGenders = genderService.findAllGenders();
+        model.addAttribute("allGenders",allGenders);
+        log.info("genders list: {}", allGenders.toString());
+        List<CountryDTO> allCountries = countryService.findAllCountries();
+        model.addAttribute("allCountries",allCountries);
+        log.info("occupations list: {}", allCountries);
         return "generate-clients";
 
     }
