@@ -14,7 +14,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Kampanie Marketingowe</div>
     </a>
 
     <!-- Divider -->
@@ -40,7 +40,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Dostępne dane:</h6>
                 <a class="collapse-item" href=" <c:url value="/occupations"/>"> Sektory pracy</a>
-                <a class="collapse-item" href=" <c:url value="/phones"/>">Numery Telefonów</a>
+                <a class="collapse-item" href=" <c:url value="/phones"/>">Klienci</a>
             </div>
         </div>
     </li>

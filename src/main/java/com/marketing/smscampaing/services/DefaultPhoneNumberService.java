@@ -13,8 +13,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service @Slf4j @AllArgsConstructor
-public class DefaultPhoneNumberService implements PhonesNumberService{
+@Service
+@Slf4j
+@AllArgsConstructor
+public class DefaultPhoneNumberService implements PhonesNumberService {
     private final PhoneNumbersRepository phoneNumbersRepository;
     private final TypeRepository typeRepository;
     private final PurposeRepository purposeRepository;
@@ -37,38 +39,36 @@ public class DefaultPhoneNumberService implements PhonesNumberService{
 
     @Override
     public List<PhoneDTO> showByParams(
-                                       LocalDate min,
-                                       LocalDate max,
-                                       @Param("gender") List<String> gender,
-                                       @Param("occupation") List<String> occupation,
-                                       @Param("purpose") List<String> purpose,
-                                       @Param("type") List<String> type,
-                                       @Param("country") List<String> country) {
+            LocalDate min,
+            LocalDate max,
+            @Param("gender") List<String> gender,
+            @Param("occupation") List<String> occupation,
+            @Param("purpose") List<String> purpose,
+            @Param("type") List<String> type,
+            @Param("country") List<String> country) {
 
 
-
-        if (gender.isEmpty()){
+        if (gender.isEmpty()) {
             List<Gender> all = genderRepository.findAll();
-            gender= all.stream().map(Gender::getGender).collect(Collectors.toList());
+            gender = all.stream().map(Gender::getGender).collect(Collectors.toList());
         }
-        if (occupation.isEmpty()){
+        if (occupation.isEmpty()) {
             List<Occupation> all = occupationRepository.findAll();
-            occupation= all.stream().map(Occupation::getOccupation).collect(Collectors.toList());
+            occupation = all.stream().map(Occupation::getOccupation).collect(Collectors.toList());
         }
-        if (purpose.isEmpty()){
+        if (purpose.isEmpty()) {
             List<Purpose> all = purposeRepository.findAllBy();
-            purpose= all.stream().map(Purpose::getPurpose).collect(Collectors.toList());
+            purpose = all.stream().map(Purpose::getPurpose).collect(Collectors.toList());
         }
-        if (type.isEmpty()){
+        if (type.isEmpty()) {
             List<Type> all = typeRepository.findAllBy();
             type = all.stream().map(Type::getType).collect(Collectors.toList());
         }
-        if (country.isEmpty()){
+        if (country.isEmpty()) {
             List<Country> all = countryRepository.findAllBy();
             country = all.stream().map(Country::getName).collect(Collectors.toList());
         }
-        List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max,gender,occupation,purpose, type,country);
-//        List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(minDate, maxDate, gender,occupation,purpose, type,country);
+        List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max, gender, occupation, purpose, type, country);
         ModelMapper myModel = new ModelMapper();
         myModel.getConfiguration().setAmbiguityIgnored(true);
         log.info("Phones from query before mapping: {}", phones.toString());

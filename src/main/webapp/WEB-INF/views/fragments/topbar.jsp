@@ -29,7 +29,6 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
                     <form class="form-inline mt-3" method="post" action="/logout">
                         <button class="btn btn-outline-primary" type="submit">Wyloguj</button>

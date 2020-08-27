@@ -5,6 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -23,7 +24,6 @@
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
                 <form method="post" >
-<%--                <form:form method="post" modelAttribute="clientFilter">--%>
                 <div class="row">
                     <div class="col-lg-4">
                         <h1 class="h3 mb-4 text-gray-800">Generuj klientów na kampanię</h1>
@@ -47,7 +47,7 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz przedział wiekowy klientów:</h6>
                             </div>
                             <div class="card-body">
-                                <input class="form-control form-control-user" name="ageMin" type="number" min="0" step = "1" placeholder="Min" value="0">
+                                <input class="form-control form-control-user" name="ageMin" type="number" min="0" step = "1" placeholder="Min">
                                 <input class="form-control form-control-user"  name="ageMax" type="number" min="0" step="1" placeholder="Max">
                             </div>
                         </div>
@@ -67,14 +67,14 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz sektor pracy: </h6>
                             </div>
-                            <div class="card-body">
-                                <select name="occupation" id="occupation" multiple>
+<%--                            <div class="card-body">--%>
+                                <select class="card mb-4 py-3 border-left-primary" name="occupation" id="occupation" multiple size="${fn:length(allOccupations)}">
                                     <c:forEach var="el" items="${allOccupations}">
                                         <option value="<c:out value="${el.occupation}"/>"><c:out value="${el.occupation}"/></option>
                                     </c:forEach>
                                 </select>
 
-                            </div>
+<%--                            </div>--%>
                         </div>
 
                     </div>
@@ -106,13 +106,13 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz kraj numeru:</h6>
                             </div>
-                            <div class="card-body">
-                                <select name="country" id="country" multiple>
-                                    <c:forEach var="el" items="${allCountries}">
+<%--                            <div class="card-body">--%>
+                                <select class="card mb-4 py-3 border-left-primary" name="country" id="country" multiple size="${fn:length(allCountries)}">
+                                    <c:forEach var="el" items="${allCountries}" >
                                         <option value="<c:out value="${el.countryName}"/>"><c:out value="${el.countryName}"/></option>
                                     </c:forEach>
                                 </select>
-                            </div>
+<%--                            </div>--%>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 </form>
 
             </div>
-        </div>  <!-- check -->
+        </div>
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>

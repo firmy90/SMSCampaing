@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller @Slf4j
+@Controller
+@Slf4j
 @AllArgsConstructor
 @RequestMapping("/generate/clients")
 public class ClientsCampaingController {
@@ -29,14 +30,14 @@ public class ClientsCampaingController {
     private final PhonesNumberService phonesNumberService;
 
     @PostMapping
-    public String showLastClients(@RequestParam(required = false, defaultValue = "") String ageMin,
+    public String showLastClients(@RequestParam(required = false, defaultValue = "0") String ageMin,
                                   @RequestParam(required = false, defaultValue = "") String ageMax,
                                   @RequestParam(required = false, defaultValue = "") @Param("gender") List<String> gender,
                                   @RequestParam(required = false, defaultValue = "") @Param("occupation") List<String> occupation,
                                   @RequestParam(required = false, defaultValue = "") @Param("purpose") List<String> purpose,
                                   @RequestParam(required = false, defaultValue = "") @Param("type") List<String> type,
                                   @RequestParam(required = false, defaultValue = "") @Param("country") List<String> country,
-                                  Model model){
+                                  Model model) {
         log.info("RequestParam ageMin: {}", ageMin);
         log.info("RequestParam ageMax: {}", ageMax);
         log.info("RequestParam gender: {}", gender.toString());
@@ -46,45 +47,49 @@ public class ClientsCampaingController {
         log.info("RequestParam country: {}", country.toString());
         LocalDate minDate = LocalDate.MIN;
         LocalDate maxDate = LocalDate.MAX;
-        try{
+        try {
             int minInt = Integer.parseInt(ageMin);
+            if (minInt < 0) {
+                minInt = 0;
+            }
             maxDate = LocalDate.now().minusYears(minInt);
-            log.info("maxDate : {}", maxDate );
+            log.info("maxDate : {}", maxDate);
         } catch (NumberFormatException ignored) {
             log.info("AgeMin not a number: {}", ageMin);
         }
-        try{
+        try {
             int maxInt = Integer.parseInt(ageMax);
+            if (maxInt < 0) {
+                 maxInt=0;
+            }
             minDate = LocalDate.now().minusYears(maxInt);
-            log.info("minDate : {}", minDate );
+            log.info("minDate : {}", minDate);
         } catch (NumberFormatException ignored) {
             log.info("AgeMax not a number: {}", ageMax);
         }
 
-
-        List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(minDate, maxDate, gender,occupation,purpose,type,country);
-//        List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(ageMin, ageMax,gender,occupation,purpose,type,country);
+        List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(minDate, maxDate, gender, occupation, purpose, type, country);
         log.info("phoneDTOS from query before mapping: {}", phoneDTOS.toString());
-        model.addAttribute("phones",phoneDTOS);
+        model.addAttribute("phones", phoneDTOS);
         log.info("phoneDTOS from query after mapping: {}", phoneDTOS.toString());
         return "phones-page";
 
     }
 
     @GetMapping
-    public String filtrClients(Model model){
+    public String filtrClients(Model model) {
         List<OccupationDTO> occupationDTOS = occupationService.showOccupations();
         model.addAttribute("allOccupations", occupationDTOS);
         log.info("occupations list: {}", occupationDTOS.toString());
         List<TypeDTO> allTypes = typeService.findAllTypes();
-        model.addAttribute("allTypes",allTypes);
+        model.addAttribute("allTypes", allTypes);
         List<PurposeDTO> allPurposes = purposeService.findAllPurposes();
-        model.addAttribute("allPurposes",allPurposes);
+        model.addAttribute("allPurposes", allPurposes);
         List<GenderDTO> allGenders = genderService.findAllGenders();
-        model.addAttribute("allGenders",allGenders);
+        model.addAttribute("allGenders", allGenders);
         log.info("genders list: {}", allGenders.toString());
         List<CountryDTO> allCountries = countryService.findAllCountries();
-        model.addAttribute("allCountries",allCountries);
+        model.addAttribute("allCountries", allCountries);
         log.info("occupations list: {}", allCountries);
         return "generate-clients";
 
