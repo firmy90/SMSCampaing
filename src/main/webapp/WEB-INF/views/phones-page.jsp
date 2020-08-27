@@ -23,48 +23,50 @@
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
                 <h1 class="h3 mb-0 text-gray-800">Dostępne numery telefonów</h1>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Klient</th>
-                                    <th>Płeć</th>
-                                    <th>Data urodzenia</th>
-                                    <th>Sektor Zatrudnienia</th>
-                                    <th>Państwo</th>
-                                    <th>Numer telefonu</th>
-                                    <th>Przeznaczenie jego użycia</th>
-                                    <th>Typ numeru</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="el" items="${phones}" varStatus="index">
+                <div class="card-body">
+                    <div class="card mb-4 py-3 border-left-primary">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                     <tr>
-                                        <td><c:out value="${index.count}"/></td>
-                                        <td><c:out value="${el.clientName}"/>    <c:out value="${el.clientSurname}"/></td>
-                                        <td><c:out value="${el.clientGender}"/></td>
-                                        <td><c:out value="${el.clientBirthdate}"/></td>
-                                        <td><c:out value="${el.clientOccupation}"/></td>
-                                        <td><c:out value="${el.countryName}"/></td>
-                                        <td><c:out value="${el.number}"/></td>
-                                        <td><c:out value="${el.purposePurpose}"/></td>
-                                        <td><c:out value="${el.typeType}"/></td>
+                                        <th>Id</th>
+                                        <th>Klient</th>
+                                        <th>Płeć</th>
+                                        <th>Data urodzenia</th>
+                                        <th>Sektor Zatrudnienia</th>
+                                        <th>Państwo</th>
+                                        <th>Numer telefonu</th>
+                                        <th>Przeznaczenie jego użycia</th>
+                                        <th>Typ numeru</th>
                                     </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="el" items="${phones}" varStatus="index">
+                                        <tr>
+                                            <td><c:out value="${index.count}"/></td>
+                                            <td><c:out value="${el.clientName}"/> <c:out
+                                                    value="${el.clientSurname}"/></td>
+                                            <td><c:out value="${el.clientGender}"/></td>
+                                            <td><c:out value="${el.clientBirthdate}"/></td>
+                                            <td><c:out value="${el.clientOccupation}"/></td>
+                                            <td><c:out value="${el.countryName}"/></td>
+                                            <td><c:out value="${el.number}"/></td>
+                                            <td><c:out value="${el.purposePurpose}"/></td>
+                                            <td><c:out value="${el.typeType}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                    </div>
                 </div>
-
             </div>
+            <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
         </div>
-        <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
     </div>
-</div>
-<jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
+    <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
 
 </body>
 

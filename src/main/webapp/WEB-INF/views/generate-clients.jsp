@@ -106,13 +106,12 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz kraj numeru:</h6>
                             </div>
-<%--                            <div class="card-body">--%>
+
                                 <select class="card mb-4 py-3 border-left-primary" name="country" id="country" multiple size="${fn:length(allCountries)}">
                                     <c:forEach var="el" items="${allCountries}" >
                                         <option value="<c:out value="${el.countryName}"/>"><c:out value="${el.countryName}"/></option>
                                     </c:forEach>
                                 </select>
-<%--                            </div>--%>
                         </div>
                     </div>
                 </div>

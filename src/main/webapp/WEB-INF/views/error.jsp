@@ -8,7 +8,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
 
     <jsp:include page="/WEB-INF/views/fragments/header.jsp"/>
@@ -22,35 +22,23 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
-                <h1 class="h3 mb-0 text-gray-800">Sektory pracy</h1>
+                <h1 class="h3 mb-0 text-gray-800">Ooops...</h1>
                 <div class="card mb-4 py-3 border-left-primary">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Sektor pracy</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="occupation" items="${occupations}" varStatus="index">
-                                    <tr>
-                                        <td><c:out value="${index.count}"/></td>
-                                        <td><c:out value="${occupation.occupation}"/></td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                        <div class="text-center">
+                            <div  data-text="404">404</div>
+<%--                            <div class="error mx-auto" data-text="404">404</div>--%>
+                            <p class="lead text-gray-800 mb-5">Page Not Found</p>
+                            <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
+                            <a href="/">&larr; Back to Dashboard</a>
                         </div>
                     </div>
                 </div>
             </div>
+            <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
         </div>
-        <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
     </div>
-</div>
-<jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
+    <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
 
 </body>
 
