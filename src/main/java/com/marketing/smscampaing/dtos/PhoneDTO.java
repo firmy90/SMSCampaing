@@ -4,16 +4,18 @@ import lombok.Data;
 
 @Data
 public class PhoneDTO {
-
-    private String clientName;
-    private String clientSurname;
-    private String clientGender;
-    private String clientBirthdate;
-    private String clientOccupation;
-    private String countryName;
+    private Long id;
     private String number;
     private String purposePurpose;
     private String typeType;
+    private String countryName;
+    private Long clientUid;
+    private String clientName;
+    private String clientSurname;
+    private String clientBirthdate;
+    private String clientGender;
+    private String clientOccupation;
+
 
 
 

@@ -23,10 +23,19 @@ public class DefaultCampaingService implements CampaingService{
     @Override
     public List<CampaingDTO> showLastCampaings() {
         List<Campaing> campaings = campaingRepository.findAllByVisibleIsTrueOrderByStartingDateDesc();
-        log.info("Campaings before mapping: {}", campaings.toString());
+        log.debug("Campaings before mapping: {}", campaings.toString());
         ModelMapper myModel = new ModelMapper();
         List<CampaingDTO> campaingsDTO = campaings.stream().map(el -> myModel.map(el, CampaingDTO.class)).collect(Collectors.toList());
-        log.info("Campaings after mapping: {}", campaingsDTO.toString());
+        log.debug("Campaings after mapping: {}", campaingsDTO.toString());
         return campaingsDTO;
     }
+
+//    @Override
+//    public CampaingDTO getCampaingByName(String cname) {
+//        Campaing firstByCname = campaingRepository.findFirstByCname(cname);
+//        log.debug("Chosen campaing name: {}", firstByCname.toString());
+//        CampaingDTO campaingDTO = modelMapper.map(firstByCname, CampaingDTO.class);
+//        log.debug("Chosen campaing name after mapping: {}", firstByCname.toString());
+//        return campaingDTO;
+//    }
 }

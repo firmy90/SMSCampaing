@@ -8,4 +8,6 @@ import java.util.List;
 public interface CampaingRepository extends JpaRepository<Campaing, Long> {
 
     List<Campaing> findAllByVisibleIsTrueOrderByStartingDateDesc();
+    Campaing findFirstByCname(String name);
+    Campaing findAllById(Long id);
 }

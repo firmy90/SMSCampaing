@@ -4,12 +4,13 @@ import lombok.Data;
 
 @Data
 public class ClientsPhoneCountryDTO {
-//    private Client client;
+    private String clientUid;
     private String clientName;
     private String clientSurname;
     private String clientGender;
     private String occupationOccupation;
-    private String CountryName;
+    private String countryName;
+    private String phoneId;
     private String phoneNumber;
     private String purposePurpose;
     private String typeType;

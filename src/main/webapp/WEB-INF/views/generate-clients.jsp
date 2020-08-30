@@ -67,14 +67,11 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Wybierz sektor pracy: </h6>
                             </div>
-<%--                            <div class="card-body">--%>
                                 <select class="card mb-4 py-3 border-left-primary" name="occupation" id="occupation" multiple size="${fn:length(allOccupations)}">
                                     <c:forEach var="el" items="${allOccupations}">
                                         <option value="<c:out value="${el.occupation}"/>"><c:out value="${el.occupation}"/></option>
                                     </c:forEach>
                                 </select>
-
-<%--                            </div>--%>
                         </div>
 
                     </div>
@@ -117,6 +114,7 @@
                 </div>
                     <sec:csrfInput/>
                 </form>
+
 
             </div>
         </div>

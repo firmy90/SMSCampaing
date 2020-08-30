@@ -16,7 +16,7 @@ public class Campaing {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     @Column(name = "campaing_name")
-    private String campaignName;
+    private String cname;
     @Column(name="starting_date")
     private LocalDate startingDate;
     @Column(name="finish_date")

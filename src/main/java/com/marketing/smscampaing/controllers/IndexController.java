@@ -21,7 +21,7 @@ public class IndexController {
     public String showWelcomePage(Model model){
         List<CampaingDTO> campaingDTOS = campaingService.showLastCampaings();
         model.addAttribute("campaings",campaingDTOS);
-        log.info("Campaings: {}", campaingDTOS.toString());
+        log.debug("Campaings: {}", campaingDTOS.toString());
         return "index";
     }
 }

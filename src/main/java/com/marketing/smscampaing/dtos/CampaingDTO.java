@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class CampaingDTO {
-    private String campaignName;
+    private String cname;
     private LocalDate startingDate;
     private LocalDate finishDate;
 }

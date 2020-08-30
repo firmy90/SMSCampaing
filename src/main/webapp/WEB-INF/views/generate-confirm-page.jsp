@@ -22,7 +22,57 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
-                <h1 class="h3 mb-0 text-gray-800">Dostępne numery telefonów</h1>
+                <form method="post" action="/generate/send">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h1 class="h3 mb-4 text-gray-800">Potwierdź wysyłkę</h1>
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="submit" class="btn btn-primary btn-icon-split">
+                                <span class="icon text-white-50">
+                                       <i class="fas fa-flag"></i>
+                                   </span>
+                                <span class="text">Wyślij</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Nazwa kampanii </h6>
+                                </div>
+                                <div class="card-body">
+                                    <c:out value="${campaingByName.campaingCname}"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Wiadomość</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <c:out value="${campaingByName.content}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Wybierz serwis wysyłkowy</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <c:out value="${campaingByName.authorizationParameter.provider}"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <sec:csrfInput/>
+                </form>
+
+                <h1 class="h3 mb-0 text-gray-800">Wybrani klienci:</h1>
                 <div class="card-body">
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
@@ -42,7 +92,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="el" items="${phones}" varStatus="index">
+                                    <c:forEach var="el" items="${phonesSes}" varStatus="index">
                                         <tr>
                                             <td><c:out value="${index.count}"/></td>
                                             <td><c:out value="${el.clientName}"/> <c:out
@@ -63,7 +113,6 @@
                     </div>
                 </div>
             </div>
-            <a href="/generate/message">Przejdź do generowania wiadomości</a>
             <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
         </div>
     </div>

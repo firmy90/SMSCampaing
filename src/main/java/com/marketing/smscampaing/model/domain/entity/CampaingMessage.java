@@ -45,10 +45,10 @@ public class CampaingMessage {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "message_campaing_id")
-    private CampaingMessage campaingMessage;
-    @Column(name="message_campaing_id",insertable = false, updatable = false)
-    private Long campaingMessageId;
+    @JoinColumn(name="authorization_id")
+    private AuthorizationParameter authorization;
+    @Column(name="authorization_id", insertable = false, updatable = false)
+    private Long authorizationId;
 
 
     @Column(name = "generated_links", length = 50)

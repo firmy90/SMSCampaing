@@ -22,7 +22,7 @@ public class OccupationController {
     @GetMapping
     public String showOccupations(Model model){
         List<OccupationDTO> occupations = occupationService.showOccupations();
-        log.info("Occupation DTO list: {}", occupations.toString());
+        log.debug("Occupation DTO list: {}", occupations.toString());
         model.addAttribute("occupations", occupations);
         return "occupations-page";
     }

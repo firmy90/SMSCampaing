@@ -17,7 +17,8 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
+    private Long uid;
     @Size(max=100)
     @Column(length = 100)
     @OrderColumn

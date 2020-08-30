@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class ClientDTO {
+public class ClientDTO_delete {
     private Long id;
     private LocalDate birthdate;
     private String genderGender;

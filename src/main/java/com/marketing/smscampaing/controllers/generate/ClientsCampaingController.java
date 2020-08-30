@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,19 +33,20 @@ public class ClientsCampaingController {
     @PostMapping
     public String showLastClients(@RequestParam(required = false, defaultValue = "0") String ageMin,
                                   @RequestParam(required = false, defaultValue = "") String ageMax,
-                                  @RequestParam(required = false, defaultValue = "") @Param("gender") List<String> gender,
-                                  @RequestParam(required = false, defaultValue = "") @Param("occupation") List<String> occupation,
-                                  @RequestParam(required = false, defaultValue = "") @Param("purpose") List<String> purpose,
-                                  @RequestParam(required = false, defaultValue = "") @Param("type") List<String> type,
-                                  @RequestParam(required = false, defaultValue = "") @Param("country") List<String> country,
-                                  Model model) {
-        log.info("RequestParam ageMin: {}", ageMin);
-        log.info("RequestParam ageMax: {}", ageMax);
-        log.info("RequestParam gender: {}", gender.toString());
-        log.info("RequestParam occupation: {}", occupation.toString());
-        log.info("RequestParam purpose: {}", purpose.toString());
-        log.info("RequestParam type: {}", type.toString());
-        log.info("RequestParam country: {}", country.toString());
+                                  @RequestParam(required = false, defaultValue = "") List<String> gender,
+                                  @RequestParam(required = false, defaultValue = "") List<String> occupation,
+                                  @RequestParam(required = false, defaultValue = "") List<String> purpose,
+                                  @RequestParam(required = false, defaultValue = "") List<String> type,
+                                  @RequestParam(required = false, defaultValue = "") List<String> country,
+                                  Model model,
+                                  HttpSession session) {
+        log.debug("RequestParam ageMin: {}", ageMin);
+        log.debug("RequestParam ageMax: {}", ageMax);
+        log.debug("RequestParam gender: {}", gender.toString());
+        log.debug("RequestParam occupation: {}", occupation.toString());
+        log.debug("RequestParam purpose: {}", purpose.toString());
+        log.debug("RequestParam type: {}", type.toString());
+        log.debug("RequestParam country: {}", country.toString());
         LocalDate minDate = LocalDate.MIN;
         LocalDate maxDate = LocalDate.MAX;
         try {
@@ -53,26 +55,27 @@ public class ClientsCampaingController {
                 minInt = 0;
             }
             maxDate = LocalDate.now().minusYears(minInt);
-            log.info("maxDate : {}", maxDate);
+            log.debug("maxDate : {}", maxDate);
         } catch (NumberFormatException ignored) {
-            log.info("AgeMin not a number: {}", ageMin);
+            log.debug("AgeMin not a number: {}", ageMin);
         }
         try {
             int maxInt = Integer.parseInt(ageMax);
             if (maxInt < 0) {
-                 maxInt=0;
+                maxInt = 0;
             }
             minDate = LocalDate.now().minusYears(maxInt);
-            log.info("minDate : {}", minDate);
+            log.debug("minDate : {}", minDate);
         } catch (NumberFormatException ignored) {
-            log.info("AgeMax not a number: {}", ageMax);
+            log.debug("AgeMax not a number: {}", ageMax);
         }
 
         List<PhoneDTO> phoneDTOS = phonesNumberService.showByParams(minDate, maxDate, gender, occupation, purpose, type, country);
-        log.info("phoneDTOS from query before mapping: {}", phoneDTOS.toString());
+        log.debug("PhoneDTOS from query: {}", phoneDTOS.toString());
         model.addAttribute("phones", phoneDTOS);
-        log.info("phoneDTOS from query after mapping: {}", phoneDTOS.toString());
-        return "phones-page";
+        session.setAttribute("phonesSes", phoneDTOS);
+//        return "generate-message-page";
+        return "redirect:/generate/message";
 
     }
 
@@ -80,17 +83,23 @@ public class ClientsCampaingController {
     public String filtrClients(Model model) {
         List<OccupationDTO> occupationDTOS = occupationService.showOccupations();
         model.addAttribute("allOccupations", occupationDTOS);
-        log.info("occupations list: {}", occupationDTOS.toString());
+        log.debug("occupations list: {}", occupationDTOS.toString());
+
         List<TypeDTO> allTypes = typeService.findAllTypes();
         model.addAttribute("allTypes", allTypes);
+        log.debug("types list: {}", allTypes.toString());
+
         List<PurposeDTO> allPurposes = purposeService.findAllPurposes();
         model.addAttribute("allPurposes", allPurposes);
+        log.debug("purposes list: {}", allPurposes.toString());
+
         List<GenderDTO> allGenders = genderService.findAllGenders();
         model.addAttribute("allGenders", allGenders);
-        log.info("genders list: {}", allGenders.toString());
+        log.debug("genders list: {}", allGenders.toString());
+
         List<CountryDTO> allCountries = countryService.findAllCountries();
         model.addAttribute("allCountries", allCountries);
-        log.info("occupations list: {}", allCountries);
+        log.debug("occupations list: {}", allCountries);
         return "generate-clients";
 
     }

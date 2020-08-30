@@ -6,7 +6,6 @@ import com.marketing.smscampaing.model.repositories.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class DefaultPhoneNumberService implements PhonesNumberService {
+public class DefaultPhonesNumberService implements PhonesNumberService {
     private final PhoneNumbersRepository phoneNumbersRepository;
     private final TypeRepository typeRepository;
     private final PurposeRepository purposeRepository;
@@ -29,11 +28,11 @@ public class DefaultPhoneNumberService implements PhonesNumberService {
     public List<PhoneDTO> showAllPhones() {
         List<Phone> phones = phoneNumbersRepository.findAllVisible();
         ModelMapper myModel = new ModelMapper();
-        myModel.getConfiguration().setAmbiguityIgnored(true);
-        log.info("Phones before mapping: {}", phones.toString());
+//        myModel.getConfiguration().setAmbiguityIgnored(true);
+        log.debug("Phones before mapping: {}", phones.toString());
 
         List<PhoneDTO> phonesDTO = phones.stream().map(el -> myModel.map(el, PhoneDTO.class)).collect(Collectors.toList());
-        log.info("Phones after mapping: {}", phonesDTO.toString());
+        log.debug("PhonesDTO after mapping: {}", phonesDTO.toString());
         return phonesDTO;
     }
 
@@ -41,11 +40,11 @@ public class DefaultPhoneNumberService implements PhonesNumberService {
     public List<PhoneDTO> showByParams(
             LocalDate min,
             LocalDate max,
-            @Param("gender") List<String> gender,
-            @Param("occupation") List<String> occupation,
-            @Param("purpose") List<String> purpose,
-            @Param("type") List<String> type,
-            @Param("country") List<String> country) {
+            List<String> gender,
+            List<String> occupation,
+            List<String> purpose,
+            List<String> type,
+            List<String> country) {
 
 
         if (gender.isEmpty()) {
@@ -70,10 +69,11 @@ public class DefaultPhoneNumberService implements PhonesNumberService {
         }
         List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max, gender, occupation, purpose, type, country);
         ModelMapper myModel = new ModelMapper();
-        myModel.getConfiguration().setAmbiguityIgnored(true);
-        log.info("Phones from query before mapping: {}", phones.toString());
-        List<PhoneDTO> phonesDTO = phones.stream().map(el -> myModel.map(el, PhoneDTO.class)).collect(Collectors.toList());
-        log.info("Phones from query  after mapping: {}", phonesDTO.toString());
+        log.debug("Phones from query before mapping: {}", phones.toString());
+        List<PhoneDTO> phonesDTO = phones.stream().map(
+                el -> myModel.map(el, PhoneDTO.class)
+                    ).collect(Collectors.toList());
+        log.debug("Phones from query  after mapping: {}", phonesDTO.toString());
         return phonesDTO;
     }
 

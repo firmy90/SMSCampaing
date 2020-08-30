@@ -39,7 +39,7 @@
                                 <c:forEach var="el" items="${campaings}" varStatus="index">
                                     <tr>
                                         <td><c:out value="${index.count}"/></td>
-                                        <td><c:out value="${el.campaignName}"/></td>
+                                        <td><c:out value="${el.cname}"/></td>
                                         <td><c:out value="${el.startingDate}"/></td>
                                         <td><c:out value="${el.finishDate}"/></td>
                                     </tr>

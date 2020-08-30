@@ -23,15 +23,15 @@ public class DefaultRegistrationService implements RegistrationService {
 
     @Override
     public void register(RegistrationDTO registrationDTO) {
-        log.info("Registration data to create user: {}", registrationDTO);
+        log.debug("Registration data to create user: {}", registrationDTO);
         User user = modelMapper.map(registrationDTO,User.class);
-        log.info("User after mapping from registrationData: {}", user);
+        log.debug("User after mapping from registrationData: {}", user);
         String encdodedPswd = passwordEncoder.encode(registrationDTO.getPassword());
         user.setPassword(encdodedPswd);
         user.setVisible(Boolean.TRUE);
-        log.info("User before action save: {}", user);
+        log.debug("User before action save: {}", user);
         userRepository.save(user);
-        log.info("User after action save: {} ",user);
+        log.debug("User after action save: {} ",userRepository.findUserByUsername(user.getUsername()));
 
     }
 
