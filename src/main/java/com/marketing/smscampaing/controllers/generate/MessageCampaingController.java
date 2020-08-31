@@ -35,7 +35,7 @@ public class MessageCampaingController {
     @RequestMapping("/message")
     public String showGeneratedPhoneNumbers(Model model , HttpSession session) {
         List<PhoneDTO> phonesList = (List<PhoneDTO>) model.getAttribute("phones");
-        log.debug("Model with atrribute \"phones\": {}", phonesList);
+        log.debug("MessageCampaingController: Model with atrribute \"phones\": {}", phonesList);
         List<PhoneDTO> phonesFromSession = (List<PhoneDTO>)session.getAttribute("phonesSes");
         log.debug("phonesFromSession: \"phonesSes\": {}",phonesFromSession);
         List<CampaingDTO> campaingDTOS = campaingService.showLastCampaings();
@@ -56,6 +56,7 @@ public class MessageCampaingController {
         log.debug("RequestedParam = campaing: {}, content: {}, auhtId: {}",campaing,content,authId);
         List<PhoneDTO> phonesFromSession = (List<PhoneDTO>)session.getAttribute("phonesSes");
         log.debug("phonesFromSession: \"phonesSes\": {}",phonesFromSession);
+
         CampaingMessageDTO campaingByName = campaingMessageService.getCampaingByName(campaing,authId);
         log.debug("campaingByName: {}",campaingByName.toString());
         campaingByName.setCampaingCname(campaing);
@@ -68,19 +69,17 @@ public class MessageCampaingController {
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.GET)
-    public String confirmSending(@RequestParam(required = false, defaultValue = "") String campaing,
-                                 @RequestParam(required = false, defaultValue = "") Long authId,
+    public String confirmSending(
                                  Model model,
                                  HttpSession session ){
         List<PhoneDTO> phonesFromSession = (List<PhoneDTO>)session.getAttribute("phonesSes");
         log.debug("phonesFromSession: \"phonesSes\": {}",phonesFromSession);
-        CampaingMessageDTO campaingByName = campaingMessageService.getCampaingByName(campaing,authId);
-        log.debug("campaingByName: {}",campaingByName.toString());
-        session.setAttribute("campaing", campaingByName );
+        CampaingMessageDTO campaingByName = (CampaingMessageDTO)session.getAttribute("campaingByName");
+        log.debug("campaingByName from session: {}",campaingByName.toString());
         return "/generate-confirm-page";
     }
 
-    @RequestMapping(value = "/send", method = RequestMethod.GET)
+    @RequestMapping(value = "/send", method = RequestMethod.POST)
     public String sendMessages(Model model , HttpSession session) {
         List<PhoneDTO> phonesFromSession = (List<PhoneDTO>)session.getAttribute("phonesSes");
         log.debug("phonesFromSession: \"phonesSes\": {}",phonesFromSession);

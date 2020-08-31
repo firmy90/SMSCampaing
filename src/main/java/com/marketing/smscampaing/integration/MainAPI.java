@@ -40,7 +40,7 @@ public class MainAPI {
 
         new InputStreamReader(connection.getInputStream());
         int code = connection.getResponseCode();
-        log.debug("Phone number: {}, Code of sending messages:{}", to, code);
+        log.debug("sendMessagesToClient: Phone number: {}, Code of sending messages:{}", to, code);
         return code;
 
     }
