@@ -15,7 +15,6 @@ import javax.validation.constraints.Size;
 public class Purpose extends BaseEntity{
 
     @Column(nullable = false)
-    @Size(max = 100)
     private String purpose;
 }
 

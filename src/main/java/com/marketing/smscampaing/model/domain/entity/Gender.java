@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 @Table(name="genders")
 public class Gender extends BaseEntity {
 
-    @Column(nullable = false)
-    @Size(max=100)
+    @Column(nullable = false, length = 100)
     private String gender;
 }

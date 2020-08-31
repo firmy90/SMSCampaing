@@ -36,8 +36,7 @@ public class CampaingMessage extends BaseEntity   {
     @Column(name="client_id", updatable = false, insertable = false)
     private Long clientId;
 
-    @Column(name = "content", columnDefinition = "TEXT")
-    @NotNull
+    @Column(name = "content", columnDefinition = "TEXT",nullable = false)
     private String content;
 
     @ManyToOne
@@ -48,10 +47,9 @@ public class CampaingMessage extends BaseEntity   {
 
 
     @Column(name = "generated_links", length = 50)
-    @Max(50)
     private String generatedLinks;
 
-    @DateTimeFormat
+
     @Column(name = "sending_date")
     private LocalDateTime sendingDate;
 

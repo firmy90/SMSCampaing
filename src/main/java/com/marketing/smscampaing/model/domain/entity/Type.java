@@ -15,6 +15,6 @@ import javax.validation.constraints.Size;
 public class Type extends BaseEntity {
 
     @Column(nullable = false)
-    @Size(max = 100)
+
     private String type;
 }

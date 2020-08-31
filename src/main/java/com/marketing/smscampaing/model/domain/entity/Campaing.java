@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "campaings")
 public class Campaing extends BaseEntity {
 
-    @Column(name = "campaing_name")
+    @Column(name = "campaing_name", nullable = false, unique = true)
     private String cname;
     @Column(name = "starting_date")
     private LocalDate startingDate;

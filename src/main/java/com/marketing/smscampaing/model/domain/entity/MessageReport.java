@@ -24,14 +24,12 @@ public class MessageReport extends BaseEntity {
     private Long campaingMessageId;
 
 
-    @DateTimeFormat
     @Column(name = "sending_date")
     private LocalDate sendingDate;
     private boolean sendingStatus = Boolean.TRUE;
     @Enumerated(EnumType.STRING)
     private DeliveredStatusMessage deliveredStatusMessage = DeliveredStatusMessage.UNKNOWN;
 
-    @DateTimeFormat
     @Column(name = "clicked_link")
     private LocalDate clickedLink;
 

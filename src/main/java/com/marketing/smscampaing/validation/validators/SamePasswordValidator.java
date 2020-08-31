@@ -17,7 +17,14 @@ public class SamePasswordValidator implements ConstraintValidator<SamePasswords,
         if (registrationDTO.getPassword() == null || registrationDTO.getRePassword() == null) {
             return true;
         }
-        return registrationDTO.getRePassword().equals(registrationDTO.getPassword());
+        boolean valid =  registrationDTO.getRePassword().equals(registrationDTO.getPassword());
+        if (!valid) {
+            constraintValidatorContext.disableDefaultConstraintViolation();
+//            constraintValidatorContext.buildConstraintViolationWithTemplate("Hasła nie zgadzają się")
+            constraintValidatorContext.buildConstraintViolationWithTemplate("SamePasswords.registrationData.rePassword")
+                    .addPropertyNode("rePassword").addConstraintViolation();
+        }
+        return valid;
 
     }
 }

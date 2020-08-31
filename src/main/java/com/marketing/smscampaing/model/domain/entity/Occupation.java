@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="occupations")
 public class Occupation extends BaseEntity {
 
-    @NotNull
+    @Column(nullable = false)
     private String occupation;
 
 

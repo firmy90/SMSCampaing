@@ -14,8 +14,7 @@ import javax.validation.constraints.Size;
 @Table(name="countries")
 public class Country extends BaseEntity {
 
-    @Column(nullable = false)
-    @Size(max=100)
+    @Column(nullable = false, length = 100)
     private String name;
 
 }

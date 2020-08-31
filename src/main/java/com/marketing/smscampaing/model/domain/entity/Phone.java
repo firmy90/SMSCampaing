@@ -17,8 +17,7 @@ public class Phone extends BaseEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column(name="number", nullable = false)
-    @Size(max=15)
+    @Column(name="number", nullable = false, length = 15)
     private String number;
 
     @ManyToOne

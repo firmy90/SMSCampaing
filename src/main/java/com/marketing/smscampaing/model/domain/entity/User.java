@@ -18,18 +18,16 @@ import java.time.LocalDateTime;
 public class User extends BaseEntity {
 
 
-    @Size(max = 100)
-    @Column(length = 100)
-    @OrderColumn
+    @Column(length = 100,unique = true, nullable = false)
     private String username;
-    @Size(max = 100)
-    @Column(length = 100)
+
+    @Column(length = 100, nullable = false)
     private String name;
-    @Size(max = 100)
-    @Column(length = 100)
+
+    @Column(length = 100, nullable = false)
     private String surname;
-    @Size(max = 100)
-    @Column(length = 100)
+
+    @Column(length = 100, nullable = false)
     private String password;
 
 

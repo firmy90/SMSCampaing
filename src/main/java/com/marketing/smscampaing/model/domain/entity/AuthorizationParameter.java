@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "authorization_parameters")
 @Getter @Setter @ToString(callSuper = true, exclude = {"apiKey"})
 public class AuthorizationParameter extends BaseEntity {
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String provider;
     @Column(nullable = false)
     private String apiKey;

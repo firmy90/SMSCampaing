@@ -19,14 +19,10 @@ public class Client {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
     private Long uid;
-    @Size(max=100)
     @Column(length = 100)
-    @OrderColumn
     private String name;
-    @Size(max=100)
     @Column(length=100)
     private String surname;
-    @DateTimeFormat
     private LocalDate birthdate;
 
 
@@ -36,9 +32,8 @@ public class Client {
     @Column(name = "gender_id", insertable = false, updatable = false)
     private Long genderId;
 
-    @DateTimeFormat
+
     private LocalDateTime created;
-    @DateTimeFormat
     private LocalDateTime updated;
 
     @ManyToOne
