@@ -32,22 +32,35 @@
                                     <label for="username">Nazwa użytkownika</label>
                                     <form:input type="text" required="true" path="username" id="username"
                                                 class="form-control" placeholder="Podaj nazwę użytkownika"/>
+                                    <form:errors path="username"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Imię</label>
                                     <form:input type="text" required="true" path="name" id="name" class="form-control"
                                                 placeholder="Podaj imię"/>
+                                    <form:errors path="name"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="surname">Nazwisko</label>
                                     <form:input type="text" required="true" path="surname" id="surname"
                                                 class="form-control"
                                                 placeholder="Podaj nazwisko"/>
+                                    <form:errors path="surname"/>
+
+
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Hasło</label>
                                     <form:input type="password" required="true" path="password" id="password"
                                                 class="form-control" placeholder="Podaj hasło"/>
+                                    <form:errors path="password"/>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="rePassword">Powtórz Hasło</label>
+                                    <form:input type="password" required="true" path="rePassword" id="rePassword"
+                                                class="form-control" placeholder="Powtórz hasło"/>
+                                    <form:errors path="rePassword"/>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Zarejestruj Użytkownika</button>
                                 <button class="btn btn-secondary" type="reset">Wyczyść dane</button>

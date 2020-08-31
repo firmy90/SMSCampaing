@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter @Setter @ToString @EqualsAndHashCode(of="id")
+@Getter @Setter @ToString @EqualsAndHashCode(of="uid")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

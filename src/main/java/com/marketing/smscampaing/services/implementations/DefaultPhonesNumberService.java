@@ -3,6 +3,7 @@ package com.marketing.smscampaing.services.implementations;
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
+import com.marketing.smscampaing.services.PhonesNumberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -28,7 +29,6 @@ public class DefaultPhonesNumberService implements PhonesNumberService {
     public List<PhoneDTO> showAllPhones() {
         List<Phone> phones = phoneNumbersRepository.findAllVisible();
         ModelMapper myModel = new ModelMapper();
-//        myModel.getConfiguration().setAmbiguityIgnored(true);
         log.debug("Phones before mapping: {}", phones.toString());
 
         List<PhoneDTO> phonesDTO = phones.stream().map(el -> myModel.map(el, PhoneDTO.class)).collect(Collectors.toList());
@@ -37,16 +37,7 @@ public class DefaultPhonesNumberService implements PhonesNumberService {
     }
 
     @Override
-    public List<PhoneDTO> showByParams(
-            LocalDate min,
-            LocalDate max,
-            List<String> gender,
-            List<String> occupation,
-            List<String> purpose,
-            List<String> type,
-            List<String> country) {
-
-
+    public List<PhoneDTO> showByParams(LocalDate min, LocalDate max, List<String> gender, List<String> occupation, List<String> purpose, List<String> types, List<String> country) {
         if (gender.isEmpty()) {
             List<Gender> all = genderRepository.findAll();
             gender = all.stream().map(Gender::getGender).collect(Collectors.toList());
@@ -59,23 +50,21 @@ public class DefaultPhonesNumberService implements PhonesNumberService {
             List<Purpose> all = purposeRepository.findAllBy();
             purpose = all.stream().map(Purpose::getPurpose).collect(Collectors.toList());
         }
-        if (type.isEmpty()) {
+        if (types.isEmpty()) {
             List<Type> all = typeRepository.findAllBy();
-            type = all.stream().map(Type::getType).collect(Collectors.toList());
+            types = all.stream().map(Type::getType).collect(Collectors.toList());
         }
         if (country.isEmpty()) {
             List<Country> all = countryRepository.findAllBy();
             country = all.stream().map(Country::getName).collect(Collectors.toList());
         }
-        List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max, gender, occupation, purpose, type, country);
+        List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max, gender, occupation, purpose, types, country);
         ModelMapper myModel = new ModelMapper();
         log.debug("Phones from query before mapping: {}", phones.toString());
         List<PhoneDTO> phonesDTO = phones.stream().map(
                 el -> myModel.map(el, PhoneDTO.class)
-                    ).collect(Collectors.toList());
+        ).collect(Collectors.toList());
         log.debug("Phones from query  after mapping: {}", phonesDTO.toString());
         return phonesDTO;
     }
-
-
 }

@@ -8,6 +8,7 @@ import com.marketing.smscampaing.model.domain.entity.CampaingMessage;
 import com.marketing.smscampaing.model.repositories.AuthorizationRepository;
 import com.marketing.smscampaing.model.repositories.CampaingMessageRepository;
 import com.marketing.smscampaing.model.repositories.CampaingRepository;
+import com.marketing.smscampaing.services.CampaingMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -20,23 +21,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
-@AllArgsConstructor
 @Slf4j
+@AllArgsConstructor
 public class DefaultCampaingMessageService implements CampaingMessageService {
-
     private final CampaingMessageRepository campaingMessageRepository;
     private final CampaingRepository campaingRepository;
     private final AuthorizationRepository authorizationRepository;
     private final ModelMapper modelMapper;
 
-
     @Override
-    public CampaingMessageDTO getCampaingByName(String cname, Long authId) {
-        Campaing firstByCname = campaingRepository.findFirstByCname(cname);
+    public CampaingMessageDTO getCampaingByName(String name, Long id) {
+        Campaing firstByCname = campaingRepository.findFirstByCname(name);
         log.debug("Chosen campaing message name: {}", firstByCname.toString());
-        AuthorizationParameter byId = authorizationRepository.findFirstById(authId);
+        AuthorizationParameter byId = authorizationRepository.findFirstById(id);
         log.debug("Chosen authorization repository before mapping: {}", byId.toString());
         AuthorizationParameterDTO authorizationParameterDTO = modelMapper.map(byId, AuthorizationParameterDTO.class);
         log.debug("Chosen authorization repository after mapping: {}", authorizationParameterDTO.toString());
@@ -60,6 +58,4 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
         log.debug("Page of Message Campaing DTO after mapping: {}", allDTO);
         return allDTO;
     }
-
-
 }

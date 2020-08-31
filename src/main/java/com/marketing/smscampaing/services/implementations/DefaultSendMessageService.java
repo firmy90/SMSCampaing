@@ -4,6 +4,7 @@ import com.marketing.smscampaing.dtos.CampaingMessageDTO;
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
+import com.marketing.smscampaing.services.SendMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,8 +16,8 @@ import java.io.IOException;
 import static java.time.LocalDateTime.now;
 
 @Service
-@AllArgsConstructor
 @Slf4j
+@AllArgsConstructor
 public class DefaultSendMessageService implements SendMessageService {
     private final CampaingMessageRepository campaingMessageRepository;
     private final ModelMapper modelMapper;
@@ -24,7 +25,6 @@ public class DefaultSendMessageService implements SendMessageService {
     private final CampaingRepository campaingRepository;
     private final ClientsCampaingRepository clientsCampaingRepository;
     private final PhoneNumbersRepository phoneNumbersRepository;
-
     @Override
     public int sendMessage(PhoneDTO phoneDTO, CampaingMessageDTO campaingMessageDTO) throws IOException {
         if (campaingMessageDTO.getAuthorizationParameter().getId() == 1) {
@@ -40,7 +40,6 @@ public class DefaultSendMessageService implements SendMessageService {
         }
         return 0;
     }
-
 
     @Override
     @Transactional
