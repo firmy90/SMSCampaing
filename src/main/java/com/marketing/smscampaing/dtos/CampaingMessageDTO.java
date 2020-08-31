@@ -11,6 +11,15 @@ public class CampaingMessageDTO {
     private String sendingDate;
     private boolean sendingStatus;
     private String deliveredStatusMessage;
+    private String clientName;
+    private String clientSurname;
+    private String clientBirthdate;
+    private String clientGender;
+    private String clientOccupation;
+    private String phoneNumber;
+    private String phoneCountryName;
+    private String phoneTypeType;
+    private String phonePurposePurpose;
 
 
 }

@@ -30,12 +30,4 @@ public class DefaultCampaingService implements CampaingService{
         return campaingsDTO;
     }
 
-//    @Override
-//    public CampaingDTO getCampaingByName(String cname) {
-//        Campaing firstByCname = campaingRepository.findFirstByCname(cname);
-//        log.debug("Chosen campaing name: {}", firstByCname.toString());
-//        CampaingDTO campaingDTO = modelMapper.map(firstByCname, CampaingDTO.class);
-//        log.debug("Chosen campaing name after mapping: {}", firstByCname.toString());
-//        return campaingDTO;
-//    }
 }

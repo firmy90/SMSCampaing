@@ -71,7 +71,8 @@
                                 <select class="card mb-4 py-3 border-left-primary" name="provider">
                                     <c:forEach var="el" items="${providers}">
                                         <option value="<c:out value="${el.provider}"/>"><c:out
-                                                value="${el.provider}"/> <input type="hidden" value="${el.id}" name="authId" /> </option>
+                                                value="${el.provider}"/> <input type="hidden" value="${el.id}"
+                                                                                name="authId"/></option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -120,12 +121,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
         </div>
-        <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
     </div>
-</div>
-<jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
-
+    <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
+    <script type="text/javascript" defer src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" defer src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" defer src="/js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

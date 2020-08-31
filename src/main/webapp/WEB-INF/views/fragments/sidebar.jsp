@@ -39,8 +39,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Dostępne dane:</h6>
+                <a class="collapse-item" href=" <c:url value="/"/>"> Kampanie</a>
                 <a class="collapse-item" href=" <c:url value="/occupations"/>"> Sektory pracy</a>
                 <a class="collapse-item" href=" <c:url value="/phones"/>">Klienci</a>
+                <a class="collapse-item" href=" <c:url value="/generate/report"/>">Ostatnie wiadomości</a>
             </div>
         </div>
     </li>

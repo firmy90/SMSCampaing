@@ -57,8 +57,8 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allGenders}">
-                                    <input type="checkbox" value="<c:out value="${el.gender}"/>" name= "gender">
-                                    <label><c:out value="${el.gender}"/></label>
+                                    <input type="checkbox" value="<c:out value="${el.gender}"/>" name= "gender" id="<c:out value="${el.gender}"/>">
+                                    <label for="<c:out value="${el.gender}"/>"><c:out value="${el.gender}"/></label>
                                 </c:forEach>
                             </div>
                         </div>
@@ -83,8 +83,8 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allPurposes}">
-                                    <input type="checkbox" name= "purpose" value="<c:out value="${el.purpose}"/>">
-                                    <label><c:out value="${el.purpose}"/></label>
+                                    <input type="checkbox" name= "purpose" value="<c:out value="${el.purpose}"/>" id ="<c:out value="${el.purpose}"/>">
+                                    <label for="<c:out value="${el.purpose}"/>"><c:out value="${el.purpose}"/></label>
                                 </c:forEach>
                             </div>
                         </div>
@@ -94,8 +94,8 @@
                             </div>
                             <div class="card-body">
                                 <c:forEach var="el" items="${allTypes}">
-                                    <input type="checkbox" name= "type" value="<c:out value="${el.type}"/>">
-                                    <label><c:out value="${el.type}"/></label>
+                                    <input type="checkbox" name= "type" value="<c:out value="${el.type}"/>" id="<c:out value="${el.type}"/>">
+                                    <label for="<c:out value="${el.type}"/>"><c:out value="${el.type}"/></label>
                                 </c:forEach>
                             </div>
                         </div>
@@ -124,6 +124,7 @@
 </div>
 </div>
 <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
+
 
 </body>
 

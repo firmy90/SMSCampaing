@@ -55,6 +55,9 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
+<script type="text/javascript" defer src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" defer src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" defer src="/js/demo/datatables-demo.js"></script>
 
 </body>
 

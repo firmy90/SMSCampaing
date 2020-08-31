@@ -22,7 +22,7 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
-                <h1 class="h3 mb-0 text-gray-800">Dostępne numery telefonów</h1>
+                <h1 class="h3 mb-0 text-gray-800">Ostatnie wysłane wiadomości</h1>
                 <div class="card-body">
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
@@ -39,10 +39,14 @@
                                         <th>Numer telefonu</th>
                                         <th>Przeznaczenie jego użycia</th>
                                         <th>Typ numeru</th>
+                                        <th>Kampania</th>
+                                        <th>Treść</th>
+                                        <th>Data wysyłki</th>
+                                        <th>Status wysyłki wiadomości</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="el" items="${phones}" varStatus="index">
+                                    <c:forEach var="el" items="${campaingMessages}" varStatus="index">
                                         <tr>
                                             <td><c:out value="${index.count}"/></td>
                                             <td><c:out value="${el.clientName}"/> <c:out
@@ -50,10 +54,14 @@
                                             <td><c:out value="${el.clientGender}"/></td>
                                             <td><c:out value="${el.clientBirthdate}"/></td>
                                             <td><c:out value="${el.clientOccupation}"/></td>
-                                            <td><c:out value="${el.countryName}"/></td>
-                                            <td><c:out value="${el.number}"/></td>
-                                            <td><c:out value="${el.purposePurpose}"/></td>
-                                            <td><c:out value="${el.typeType}"/></td>
+                                            <td><c:out value="${el.phoneCountryName}"/></td>
+                                            <td><c:out value="${el.phoneNumber}"/></td>
+                                            <td><c:out value="${el.phonePurposePurpose}"/></td>
+                                            <td><c:out value="${el.phoneTypeType}"/></td>
+                                            <td><c:out value="${el.campaingCname}"/></td>
+                                            <td><c:out value="${el.content}"/></td>
+                                            <td><c:out value="${el.sendingDate}"/></td>
+                                            <td><c:out value="${el.sendingStatus}"/></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -68,9 +76,7 @@
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
-    <script type="text/javascript" defer src="/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" defer src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" defer src="/js/demo/datatables-demo.js"></script>
+
 
 </body>
 
