@@ -28,8 +28,8 @@ import java.util.List;
 public class MessageCampaingController {
     private final CampaingService campaingService;
     private final CampaingMessageService campaingMessageService;
-    private final AuthorizationService authorizationService;
     private final SendMessageService sendMessageService;
+    private final AuthorizationService authorizationService;
 
     @GetMapping
     @RequestMapping("/message")
@@ -88,7 +88,8 @@ public class MessageCampaingController {
         phonesFromSession.stream().forEach(el->
                 {
                     try {
-                        sendMessageService.sendMessage(el,campaingMessageDTO);
+                        int i = sendMessageService.sendMessage(el, campaingMessageDTO);
+                        sendMessageService.saveCampaignMessage(el,campaingMessageDTO,i);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

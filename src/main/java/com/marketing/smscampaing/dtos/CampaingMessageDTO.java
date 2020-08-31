@@ -8,6 +8,9 @@ public class CampaingMessageDTO {
     private String campaingCname;
     private String content;
     private AuthorizationParameterDTO authorizationParameter;
+    private String sendingDate;
+    private boolean sendingStatus;
+    private String deliveredStatusMessage;
 
 
 }

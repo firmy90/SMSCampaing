@@ -23,5 +23,6 @@ public interface PhoneNumbersRepository extends JpaRepository<Phone,Long> {
                                        @Param("purpose") List<String> purpose,
                                        @Param("type") List<String> type,
                                        @Param("country") List<String> country);
+    Phone findFirstById(Long id);
 
 }

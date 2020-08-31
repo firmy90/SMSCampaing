@@ -29,17 +29,15 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
     @Override
     public CampaingMessageDTO getCampaingByName(String cname, Long authId) {
         Campaing firstByCname = campaingRepository.findFirstByCname(cname);
-        log.debug("DefaultCampaingMessageService: Chosen campaing message name: {}", firstByCname.toString());
-//        CampaingMessage firstByCampaing = campaingMessageRepository.findFirstByCampaingId(firstByCname.getId());
-//        log.debug("Chosen campaing Message message name: {}", firstByCampaing.toString());
+        log.debug("Chosen campaing message name: {}", firstByCname.toString());
         AuthorizationParameter byId = authorizationRepository.findFirstById(authId);
-        log.debug("DefaultCampaingMessageService: Chosen authorization repository before mapping: {}", byId.toString());
+        log.debug("Chosen authorization repository before mapping: {}", byId.toString());
         AuthorizationParameterDTO authorizationParameterDTO = modelMapper.map(byId, AuthorizationParameterDTO.class);
-        log.debug("DefaultCampaingMessageService: Chosen authorization repository after mapping: {}", authorizationParameterDTO.toString());
+        log.debug("Chosen authorization repository after mapping: {}", authorizationParameterDTO.toString());
         CampaingMessageDTO campaingMessageDTO = modelMapper.map(firstByCname, CampaingMessageDTO.class);
-        log.debug("DefaultCampaingMessageService: Chosen campaing after mapping: {}", campaingMessageDTO.toString());
+        log.debug("Chosen campaing after mapping: {}", campaingMessageDTO.toString());
         campaingMessageDTO.setAuthorizationParameter(authorizationParameterDTO);
-        log.debug("DefaultCampaingMessageService: Chosen campaing message DTO after mapping: {}", campaingMessageDTO.toString());
+        log.debug("Chosen campaing message DTO after mapping: {}", campaingMessageDTO.toString());
         return campaingMessageDTO;
     }
 }
