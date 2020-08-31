@@ -29,9 +29,7 @@ public class Client {
     @DateTimeFormat
     private LocalDate birthdate;
 
-//    @Enumerated(EnumType.STRING)
-//    @NotNull
-//    private ClientGender gender = ClientGender.UNKNOWN;
+
     @ManyToOne
     @JoinColumn(name="gender_id")
     private Gender gender;

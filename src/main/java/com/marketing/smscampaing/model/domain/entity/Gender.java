@@ -5,16 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-@Getter @Setter @ToString
-@EqualsAndHashCode(of="id")
+@Getter @Setter @ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="genders")
-public class Gender {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Gender extends BaseEntity {
+
     @Column(nullable = false)
     @Size(max=100)
     private String gender;

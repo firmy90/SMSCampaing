@@ -1,12 +1,9 @@
-package com.marketing.smscampaing.controllers.generate;
+package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.AuthorizationParameterDTO;
 import com.marketing.smscampaing.dtos.CampaingDTO;
 import com.marketing.smscampaing.dtos.CampaingMessageDTO;
 import com.marketing.smscampaing.dtos.PhoneDTO;
-import com.marketing.smscampaing.integration.MainAPI;
-import com.marketing.smscampaing.model.domain.entity.CampaingMessage;
-import com.marketing.smscampaing.model.domain.entity.Phone;
 import com.marketing.smscampaing.services.AuthorizationService;
 import com.marketing.smscampaing.services.CampaingMessageService;
 import com.marketing.smscampaing.services.CampaingService;
@@ -21,8 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
-import static org.apache.logging.log4j.ThreadContext.isEmpty;
 
 @Controller
 @Slf4j
@@ -115,13 +110,11 @@ public class MessageCampaingController {
                 pageSize = pageSizeOpt.get();
             }
         }
-//        List<CampaingMessage> campaingMessages = campaingMessageService.findPaginated(pageNo, pageSize);
         List<CampaingMessageDTO> campaingMessages = campaingMessageService.findPaginatedDTO(pageNo, pageSize);
         log.debug("CampaingMessageDTO List: {}",campaingMessages);
         model.addAttribute("campaingMessages", campaingMessages);
         int campaingsSize = campaingMessages.size();
         model.addAttribute("campaingsSize", campaingsSize);
-//        return campaingMessages.toString();
         return"/generate-report-page";
     }
 }

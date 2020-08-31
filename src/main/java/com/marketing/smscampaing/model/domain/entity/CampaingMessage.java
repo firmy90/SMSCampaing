@@ -6,24 +6,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(of="id")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="campaing_messages")
-public class CampaingMessage implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CampaingMessage extends BaseEntity   {
 
     @ManyToOne
     @JoinColumn(name="campaing_id")
@@ -50,7 +43,6 @@ public class CampaingMessage implements Serializable {
     @ManyToOne
     @JoinColumn(name="authorization_id")
     private AuthorizationParameter authorization;
-//    @Column(name="authorization_id")
     @Column(name="authorization_id",updatable = false, insertable = false)
     private Long authorizationId;
 

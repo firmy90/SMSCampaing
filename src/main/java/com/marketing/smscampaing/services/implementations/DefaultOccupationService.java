@@ -1,9 +1,10 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.OccupationDTO;
 import com.marketing.smscampaing.model.domain.entity.Occupation;
 import com.marketing.smscampaing.model.domain.entity.User;
 import com.marketing.smscampaing.model.repositories.OccupationRepository;
+import com.marketing.smscampaing.services.OccupationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service @Slf4j @AllArgsConstructor
-public class DefaultOccupationService implements OccupationService{
+public class DefaultOccupationService implements OccupationService {
     private final ModelMapper modelMapper;
     private final OccupationRepository occupationRepository;
 

@@ -2,27 +2,28 @@ package com.marketing.smscampaing.model.domain.entity;
 
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
-@Getter @Setter @ToString @EqualsAndHashCode(of="id")
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="campaings")
-public class Campaing {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+@Table(name = "campaings")
+public class Campaing extends BaseEntity {
+
     @Column(name = "campaing_name")
     private String cname;
-    @Column(name="starting_date")
+    @Column(name = "starting_date")
     private LocalDate startingDate;
-    @Column(name="finish_date")
+    @Column(name = "finish_date")
     private LocalDate finishDate;
     private boolean visible = Boolean.TRUE;
-
 
 
 }

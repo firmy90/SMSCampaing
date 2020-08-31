@@ -1,8 +1,9 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.CampaingDTO;
 import com.marketing.smscampaing.model.domain.entity.Campaing;
 import com.marketing.smscampaing.model.repositories.CampaingRepository;
+import com.marketing.smscampaing.services.CampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -14,7 +15,7 @@ import java.util.stream.Stream;
 
 
 @Service @AllArgsConstructor @Slf4j
-public class DefaultCampaingService implements CampaingService{
+public class DefaultCampaingService implements CampaingService {
 
     private final CampaingRepository campaingRepository;
     private final ModelMapper modelMapper;

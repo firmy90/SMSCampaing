@@ -8,13 +8,12 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(of="id")
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="phones")
-public class Phone {
+public class Phone extends BaseEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -40,10 +39,6 @@ public class Phone {
     @Column(name = "country_id", insertable = false, updatable = false)
     private Long countryId;
 
-    @DateTimeFormat
-    private LocalDate created;
-    @DateTimeFormat
-    private LocalDate updated;
     @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
@@ -52,14 +47,5 @@ public class Phone {
 
     private boolean visible = Boolean.TRUE;
 
-    @PrePersist
-    public void prePersist() {
-        this.created = LocalDate.now();
-        this.updated = LocalDate.now();
-    }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = LocalDate.now();
-    }
 }

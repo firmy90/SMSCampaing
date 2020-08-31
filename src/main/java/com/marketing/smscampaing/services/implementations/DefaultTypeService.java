@@ -1,8 +1,9 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.TypeDTO;
 import com.marketing.smscampaing.model.domain.entity.Type;
 import com.marketing.smscampaing.model.repositories.TypeRepository;
+import com.marketing.smscampaing.services.TypeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

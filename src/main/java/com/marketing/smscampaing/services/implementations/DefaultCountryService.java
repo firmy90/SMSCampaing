@@ -1,10 +1,11 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.CountryDTO;
 import com.marketing.smscampaing.dtos.GenderDTO;
 import com.marketing.smscampaing.model.domain.entity.Country;
 import com.marketing.smscampaing.model.domain.entity.Gender;
 import com.marketing.smscampaing.model.repositories.CountryRepository;
+import com.marketing.smscampaing.services.CountryService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

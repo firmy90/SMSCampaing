@@ -71,7 +71,6 @@
                     </div>
                 </div>
             </div>
-            <a href="/generate/message">Przejdź do generowania wiadomości</a>
             <jsp:include page="/WEB-INF/views/fragments/footer.jsp"/>
         </div>
     </div>

@@ -7,16 +7,12 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(of="id")
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="occupations")
-public class Occupation {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+public class Occupation extends BaseEntity {
 
     @NotNull
     private String occupation;

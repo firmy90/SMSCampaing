@@ -1,4 +1,4 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;

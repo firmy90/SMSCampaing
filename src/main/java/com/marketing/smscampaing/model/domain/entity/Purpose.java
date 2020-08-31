@@ -7,16 +7,13 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(of = "id")
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "purposes")
-public class Purpose {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Purpose extends BaseEntity{
+
     @Column(nullable = false)
     @Size(max = 100)
     private String purpose;

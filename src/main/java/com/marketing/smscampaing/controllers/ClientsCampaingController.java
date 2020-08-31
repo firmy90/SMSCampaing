@@ -1,31 +1,28 @@
-package com.marketing.smscampaing.controllers.generate;
+package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.*;
 import com.marketing.smscampaing.services.*;
-import com.marketing.smscampaing.services.generate.ClientsCampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
 @AllArgsConstructor
 @RequestMapping("/generate/clients")
 public class ClientsCampaingController {
-    private final ClientsCampaingService clientsCampaingService;
-    private final OccupationService occupationService;
+     private final OccupationService occupationService;
     private final TypeService typeService;
     private final PurposeService purposeService;
-    private final SelectorsService selectorsService;
     private final GenderService genderService;
     private final CountryService countryService;
     private final PhonesNumberService phonesNumberService;

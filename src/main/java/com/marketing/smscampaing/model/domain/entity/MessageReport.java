@@ -1,6 +1,9 @@
 package com.marketing.smscampaing.model.domain.entity;
 
 import com.marketing.smscampaing.model.domain.entity.enums.DeliveredStatusMessage;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,11 +14,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "messages_reports")
-public class MessageReport {
+@Getter @Setter @ToString(callSuper = true)
+public class MessageReport extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
     @ManyToOne
     @JoinColumn(name = "message_campaing_id")
     private CampaingMessage campaingMessage;
