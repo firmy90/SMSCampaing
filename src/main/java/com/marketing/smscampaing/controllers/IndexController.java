@@ -1,7 +1,7 @@
 package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.CampaingDTO;
-import com.marketing.smscampaing.services.CampaingService;
+import com.marketing.smscampaing.services.interfaces.CampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

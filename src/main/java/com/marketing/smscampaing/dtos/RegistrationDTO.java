@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class RegistrationDTO {
     @NotBlank
     @Size(min = 4, max = 100)
-    @UniqueUsername(message = "{UniqueUsername.registrationData.username}")
+    @UniqueUsername
     private String username;
     @NotBlank
     @Size(min = 4, max = 100)

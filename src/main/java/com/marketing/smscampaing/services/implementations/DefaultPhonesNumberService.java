@@ -3,7 +3,7 @@ package com.marketing.smscampaing.services.implementations;
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
-import com.marketing.smscampaing.services.PhonesNumberService;
+import com.marketing.smscampaing.services.interfaces.PhonesNumberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -47,15 +47,15 @@ public class DefaultPhonesNumberService implements PhonesNumberService {
             occupation = all.stream().map(Occupation::getOccupation).collect(Collectors.toList());
         }
         if (purpose.isEmpty()) {
-            List<Purpose> all = purposeRepository.findAllBy();
+            List<Purpose> all = purposeRepository.findAll();
             purpose = all.stream().map(Purpose::getPurpose).collect(Collectors.toList());
         }
         if (types.isEmpty()) {
-            List<Type> all = typeRepository.findAllBy();
+            List<Type> all = typeRepository.findAll();
             types = all.stream().map(Type::getType).collect(Collectors.toList());
         }
         if (country.isEmpty()) {
-            List<Country> all = countryRepository.findAllBy();
+            List<Country> all = countryRepository.findAll();
             country = all.stream().map(Country::getName).collect(Collectors.toList());
         }
         List<Phone> phones = phoneNumbersRepository.findAllByParamRequests(min, max, gender, occupation, purpose, types, country);

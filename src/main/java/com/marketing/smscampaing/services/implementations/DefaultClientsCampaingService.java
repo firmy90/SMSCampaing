@@ -3,7 +3,7 @@ package com.marketing.smscampaing.services.implementations;
 import com.marketing.smscampaing.dtos.ClientsPhoneCountryDTO;
 import com.marketing.smscampaing.model.domain.entity.Client;
 import com.marketing.smscampaing.model.repositories.ClientsCampaingRepository;
-import com.marketing.smscampaing.services.ClientsCampaingService;
+import com.marketing.smscampaing.services.interfaces.ClientsCampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

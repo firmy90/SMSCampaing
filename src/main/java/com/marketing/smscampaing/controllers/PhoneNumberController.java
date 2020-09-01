@@ -1,7 +1,7 @@
 package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.PhoneDTO;
-import com.marketing.smscampaing.services.PhonesNumberService;
+import com.marketing.smscampaing.services.interfaces.PhonesNumberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

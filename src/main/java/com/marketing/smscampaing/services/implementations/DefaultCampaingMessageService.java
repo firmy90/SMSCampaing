@@ -8,7 +8,7 @@ import com.marketing.smscampaing.model.domain.entity.CampaingMessage;
 import com.marketing.smscampaing.model.repositories.AuthorizationRepository;
 import com.marketing.smscampaing.model.repositories.CampaingMessageRepository;
 import com.marketing.smscampaing.model.repositories.CampaingRepository;
-import com.marketing.smscampaing.services.CampaingMessageService;
+import com.marketing.smscampaing.services.interfaces.CampaingMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

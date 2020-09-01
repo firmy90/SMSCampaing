@@ -1,6 +1,6 @@
 package com.marketing.smscampaing.validation.validators;
 
-import com.marketing.smscampaing.services.ValidationService;
+import com.marketing.smscampaing.services.interfaces.ValidationService;
 import com.marketing.smscampaing.validation.constraints.UniqueUsername;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +19,9 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
+        if (username==null){
+            return true;
+        }
         return validationService.isUniqueUsername(username);
     }
 }

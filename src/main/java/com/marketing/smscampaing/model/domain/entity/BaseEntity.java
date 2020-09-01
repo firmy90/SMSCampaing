@@ -19,9 +19,7 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @DateTimeFormat
     private LocalDateTime created;
-    @DateTimeFormat
     private LocalDateTime updated;
 
     @PrePersist

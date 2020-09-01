@@ -1,5 +1,6 @@
 package com.marketing.smscampaing.model.repositories;
 
+import com.marketing.smscampaing.model.domain.entity.Client;
 import com.marketing.smscampaing.model.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,5 +12,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying
     @Query("update User u set u.password = :password where u.username = :name")
     int updateUserPassword(String password, String name);
+
+
 
 }

@@ -1,11 +1,9 @@
 package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.dtos.GenderDTO;
-import com.marketing.smscampaing.dtos.TypeDTO;
 import com.marketing.smscampaing.model.domain.entity.Gender;
-import com.marketing.smscampaing.model.domain.entity.Type;
 import com.marketing.smscampaing.model.repositories.GenderRepository;
-import com.marketing.smscampaing.services.GenderService;
+import com.marketing.smscampaing.services.interfaces.GenderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -21,7 +19,7 @@ public class DefaultGenderService implements GenderService {
 
     @Override
     public List<GenderDTO> findAllGenders() {
-        List<Gender> genders = genderRepository.findGendersBy() ;
+        List<Gender> genders = genderRepository.findAll() ;
         ModelMapper myModel = new ModelMapper();
         return genders
                 .stream()

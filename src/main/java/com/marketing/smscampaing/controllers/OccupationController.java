@@ -1,8 +1,7 @@
 package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.OccupationDTO;
-import com.marketing.smscampaing.model.domain.entity.Occupation;
-import com.marketing.smscampaing.services.OccupationService;
+import com.marketing.smscampaing.services.interfaces.OccupationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

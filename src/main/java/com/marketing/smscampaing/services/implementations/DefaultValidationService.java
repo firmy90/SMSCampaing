@@ -1,7 +1,7 @@
 package com.marketing.smscampaing.services.implementations;
 
 import com.marketing.smscampaing.model.repositories.UserRepository;
-import com.marketing.smscampaing.services.ValidationService;
+import com.marketing.smscampaing.services.interfaces.ValidationService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,10 +1,9 @@
 package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.RegistrationDTO;
-import com.marketing.smscampaing.services.RegistrationService;
+import com.marketing.smscampaing.services.interfaces.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -30,11 +30,14 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String procesRegistrationPage(@ModelAttribute("registrationData") @Valid RegistrationDTO registrationDTO, BindingResult results) {
+    public String procesRegistrationPage(@ModelAttribute("registrationData") @Valid RegistrationDTO registrationDTO,
+                                         BindingResult results,
+                                         RedirectAttributes redirectAttributes) {
         if(results.hasErrors()){
             return "admin-register-page";
         }
         registrationService.register(registrationDTO);
+        redirectAttributes.addFlashAttribute("messageRegisterUser", "Nowy użytkownik dodany");
         return "redirect:/";
     }
 }

@@ -3,7 +3,7 @@ package com.marketing.smscampaing.services.implementations;
 import com.marketing.smscampaing.dtos.PurposeDTO;
 import com.marketing.smscampaing.model.domain.entity.Purpose;
 import com.marketing.smscampaing.model.repositories.PurposeRepository;
-import com.marketing.smscampaing.services.PurposeService;
+import com.marketing.smscampaing.services.interfaces.PurposeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -21,7 +21,7 @@ public class DefaultPurposeService implements PurposeService {
 
     @Override
     public List<PurposeDTO> findAllPurposes() {
-        List<Purpose> purposes = purposeRepository.findAllBy();
+        List<Purpose> purposes = purposeRepository.findAll();
         ModelMapper myModel = new ModelMapper();
         List<PurposeDTO> dtos = purposes
                 .stream()

@@ -1,4 +1,4 @@
-package com.marketing.smscampaing.services;
+package com.marketing.smscampaing.services.interfaces;
 
 import com.marketing.smscampaing.dtos.ClientsPhoneCountryDTO;
 import com.marketing.smscampaing.model.domain.entity.Client;

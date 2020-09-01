@@ -4,7 +4,7 @@ import com.marketing.smscampaing.dtos.CampaingMessageDTO;
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
-import com.marketing.smscampaing.services.SendMessageService;
+import com.marketing.smscampaing.services.interfaces.SendMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

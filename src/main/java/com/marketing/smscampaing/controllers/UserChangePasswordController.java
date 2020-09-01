@@ -1,10 +1,9 @@
 package com.marketing.smscampaing.controllers;
 
 import com.marketing.smscampaing.dtos.ChangePasswordDTO;
-import com.marketing.smscampaing.services.RegistrationService;
+import com.marketing.smscampaing.services.interfaces.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

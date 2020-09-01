@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface OccupationRepository extends JpaRepository<Occupation, Long> {
+    Occupation findFirstByOccupation(String name);
 
-    @Query("select o from Occupation o order by o.id")
-    List<Occupation> findAllOccupations();
+
+
 }

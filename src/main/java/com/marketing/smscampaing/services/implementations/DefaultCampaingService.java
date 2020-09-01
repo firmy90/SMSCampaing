@@ -3,7 +3,7 @@ package com.marketing.smscampaing.services.implementations;
 import com.marketing.smscampaing.dtos.CampaingDTO;
 import com.marketing.smscampaing.model.domain.entity.Campaing;
 import com.marketing.smscampaing.model.repositories.CampaingRepository;
-import com.marketing.smscampaing.services.CampaingService;
+import com.marketing.smscampaing.services.interfaces.CampaingService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Service @AllArgsConstructor @Slf4j

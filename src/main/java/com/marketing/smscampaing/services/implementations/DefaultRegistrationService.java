@@ -4,7 +4,7 @@ import com.marketing.smscampaing.dtos.ChangePasswordDTO;
 import com.marketing.smscampaing.dtos.RegistrationDTO;
 import com.marketing.smscampaing.model.domain.entity.User;
 import com.marketing.smscampaing.model.repositories.UserRepository;
-import com.marketing.smscampaing.services.RegistrationService;
+import com.marketing.smscampaing.services.interfaces.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
