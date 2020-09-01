@@ -1,5 +1,6 @@
 package com.marketing.smscampaing.services.implementations;
 
+import com.marketing.smscampaing.dtos.ChangePasswordDTO;
 import com.marketing.smscampaing.dtos.RegistrationDTO;
 import com.marketing.smscampaing.model.domain.entity.User;
 import com.marketing.smscampaing.model.repositories.UserRepository;
@@ -7,8 +8,11 @@ import com.marketing.smscampaing.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 @Slf4j
@@ -31,5 +35,32 @@ public class DefaultRegistrationService implements RegistrationService {
         log.debug("User after action save: {} ", userRepository.findUserByUsername(user.getUsername()));
 
     }
+
+    @Override
+    @Transactional
+    public void changePassword(ChangePasswordDTO changePasswordDTO) {
+        log.debug("Change password data of the user : {}", changePasswordDTO);
+        User user = modelMapper.map(changePasswordDTO, User.class);
+        log.debug("User after mapping from passwordData: {}", user);
+        String encdodedPswd = passwordEncoder.encode(changePasswordDTO.getPassword());
+        user.setPassword(encdodedPswd);
+        user.setVisible(Boolean.TRUE);
+        log.debug("User before updated password {}", user);
+        userRepository.updateUserPassword(user.getPassword(), user.getUsername());
+        log.debug("User after updated password: {} ", userRepository.findUserByUsername(user.getUsername()));
+    }
+
+    @Override
+    public ChangePasswordDTO getDataToChangePassword() {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.debug("Username of the present user: {}", name);
+        User userByUsername = userRepository.findUserByUsername(name);
+        log.debug("Data from user taken from query by name: {}", userByUsername);
+        ChangePasswordDTO map = modelMapper.map(userByUsername, ChangePasswordDTO.class);
+        log.debug("Mapped data to ChangePasswordDTO: {} ", map);
+
+        return map;
+    }
+
 
 }

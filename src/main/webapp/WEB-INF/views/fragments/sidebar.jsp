@@ -61,7 +61,7 @@
         <li class="nav-item">
             <a class="nav-link" href="<c:url value="/change/password"/>">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Zmień hasło</span></a>
+                <span>Zmień swoje hasło</span></a>
         </li>
     </sec:authorize>
 
