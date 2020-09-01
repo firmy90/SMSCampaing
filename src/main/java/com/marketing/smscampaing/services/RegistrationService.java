@@ -6,6 +6,6 @@ import com.marketing.smscampaing.dtos.RegistrationDTO;
 public interface RegistrationService {
 
     void register(RegistrationDTO registrationDTO);
-    void changePassword(ChangePasswordDTO changePasswordDTO);
+    int changePassword(ChangePasswordDTO changePasswordDTO);
     ChangePasswordDTO getDataToChangePassword();
 }

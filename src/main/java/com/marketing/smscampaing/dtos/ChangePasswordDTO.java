@@ -23,5 +23,6 @@ public class ChangePasswordDTO {
     @Size(min = 6, message = "{javax.validation.constraints.Size.message.minPassword}")
     @Size(max=100, message = "{javax.validation.constraints.Size.message.maxPassword}")
     private String rePassword;
+    private int code;
 
 }

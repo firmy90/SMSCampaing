@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <form:hidden path="name"/>
-                                            <c:out value="${passwordData.name}"/>
+                                                <c:out value="${passwordData.name}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -64,27 +64,35 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="password">Hasło</label>
-<%--                                    <form:hidden path="password" id="password"/>--%>
-<%--                                    <form:input type="password"  required="true" path="password" id="password"--%>
-<%--                                                class="form-control" placeholder="Podaj hasło"/>--%>
-                                    <form:input type="password" id="password"  required="true" path="password"
-                                                class="form-control" placeholder="Podaj hasło"/>
-                                    <form:errors path="password"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="rePassword">Powtórz Hasło</label>
-                                    <form:input type="password" required="true" path="rePassword" id="rePassword"
-                                                class="form-control" placeholder="Powtórz hasło"/>
-                                    <form:errors path="rePassword"/>
-                                </div>
-                                <button class="btn btn-primary" type="submit">Zmień hasło</button>
-                                <button class="btn btn-secondary" type="reset">Wyczyść dane</button>
+                                <c:if test="${passwordData.code==0}">
+                                    <div class="form-group">
+                                        <label for="password">Hasło</label>
+                                        <form:input type="password" id="password" required="true" path="password"
+                                                    class="form-control" placeholder="Podaj hasło"/>
+                                        <form:errors path="password"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="rePassword">Powtórz Hasło</label>
+                                        <form:input type="password" required="true" path="rePassword" id="rePassword"
+                                                    class="form-control" placeholder="Powtórz hasło"/>
+                                        <form:errors path="rePassword"/>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Zmień hasło</button>
+                                    <button class="btn btn-secondary" type="reset">Wyczyść dane</button>
+                                </c:if>
                                 <sec:csrfInput/>
                             </form:form>
+                            <c:if test="${passwordData.code==1}">
+                                <div class="card mb-4 py-3 border-bottom-primary">
+                                    <div class="card-body">Hasło zostało pomyślnie zmienione</div>
+                                </div>
+                                    <a href="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                        <i class="fas fa-download fa-sm text-white-50"></i> Powrót na stronę główną</a>
+
+                            </c:if>
+
                         </div>
+
                         <div class="col-5"></div>
                     </div>
                 </div>

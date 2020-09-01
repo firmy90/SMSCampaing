@@ -38,7 +38,7 @@ public class DefaultRegistrationService implements RegistrationService {
 
     @Override
     @Transactional
-    public void changePassword(ChangePasswordDTO changePasswordDTO) {
+    public int changePassword(ChangePasswordDTO changePasswordDTO) {
         log.debug("Change password data of the user : {}", changePasswordDTO);
         User user = modelMapper.map(changePasswordDTO, User.class);
         log.debug("User after mapping from passwordData: {}", user);
@@ -46,8 +46,10 @@ public class DefaultRegistrationService implements RegistrationService {
         user.setPassword(encdodedPswd);
         user.setVisible(Boolean.TRUE);
         log.debug("User before updated password {}", user);
-        userRepository.updateUserPassword(user.getPassword(), user.getUsername());
+        int i = userRepository.updateUserPassword(user.getPassword(), user.getUsername());
         log.debug("User after updated password: {} ", userRepository.findUserByUsername(user.getUsername()));
+        log.debug("Number of values changed by update: {}", i);
+        return i;
     }
 
     @Override

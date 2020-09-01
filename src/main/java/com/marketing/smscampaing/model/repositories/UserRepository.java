@@ -10,6 +10,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     boolean existsByUsername(String username);
     @Modifying
     @Query("update User u set u.password = :password where u.username = :name")
-    void updateUserPassword(String password, String name);
+    int updateUserPassword(String password, String name);
 
 }

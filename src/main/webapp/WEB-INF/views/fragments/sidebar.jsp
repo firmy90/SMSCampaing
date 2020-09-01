@@ -26,11 +26,8 @@
             <span>Generuj listę</span></a>
     </li>
 
-    <!-- Divider -->
-    <div class="sidebar-divider"></div>
+    <hr class="sidebar-divider">
 
-
-    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
            aria-controls="collapseTwo">
@@ -48,8 +45,22 @@
         </div>
     </li>
 
-    <!-- Divider -->
-    <div class="sidebar-divider"></div>
+    <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+           aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Stwórz:</span>
+        </a>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Stwórz:</h6>
+                <a class="collapse-item" href=" <c:url value="/create/client"/>">Nowego Klienta</a>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
     <sec:authorize access="hasRole('ADMIN')">
         <li class="nav-item">
             <a class="nav-link" href="<c:url value="/admin/register"/>">
@@ -57,17 +68,16 @@
                 <span>Zarejestruj użytkownika</span></a>
         </li>
     </sec:authorize>
-    <sec:authorize access="!hasRole('ADMIN')">
         <li class="nav-item">
             <a class="nav-link" href="<c:url value="/change/password"/>">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Zmień swoje hasło</span></a>
         </li>
-    </sec:authorize>
-
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+
+
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

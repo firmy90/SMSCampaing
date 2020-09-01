@@ -42,7 +42,10 @@ public class UserChangePasswordController {
             log.debug("PasswordData taken from model Attribute: {}", passwordData);
             return "change-password-page";
         }
-        registrationService.changePassword(changePasswordDTO);
-        return "redirect:/";
+        int i = registrationService.changePassword(changePasswordDTO);
+        log.debug("Return code of updated rows: {}", i);
+        changePasswordDTO.setCode(i);
+        model.addAttribute("passwordData", changePasswordDTO);
+        return "change-password-page";
     }
 }
