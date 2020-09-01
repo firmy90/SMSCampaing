@@ -13,8 +13,9 @@ public class UserInsertRepository {
     private EntityManager entityManager;
 
     @Transactional
-    public void createClient(Client client){
+    public boolean createClient(Client client){
         this.entityManager.persist(client);
+        return true;
 
 
     }

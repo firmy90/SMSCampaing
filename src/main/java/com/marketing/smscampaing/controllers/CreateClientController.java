@@ -29,7 +29,7 @@ public class CreateClientController {
     private final CreateClientService createClientService;
 
     @GetMapping
-    public String prepareClient(Model model) {
+    public String prepareClient(@ModelAttribute("clientData") ClientDTO clientDTO,Model model) {
         List<GenderDTO> genders = genderService.findAllGenders();
         log.debug("genders: {}", genders);
         model.addAttribute("genders", genders);
@@ -47,8 +47,7 @@ public class CreateClientController {
     public String createClient(@ModelAttribute("clientData") @Valid ClientDTO clientDTO, BindingResult bindingResult,
                                @RequestParam(required = false, defaultValue = "UNKNOWN") String gender,
                                @RequestParam(required = false, defaultValue = "Other") String occupation,
-                               Model model,
-                               RedirectAttributes redirectAttributes) {
+                               Model model) {
         if(bindingResult.hasErrors()){
             List<GenderDTO> genders = genderService.findAllGenders();
             log.debug("genders: {}", genders);
@@ -69,9 +68,12 @@ public class CreateClientController {
         clientDTO.setGenderGender(gender);
         clientDTO.setOccupationOccupation(occupation);
         log.debug("Client before saving to database: {}", clientDTO);
-        createClientService.createClient(clientDTO);
-        redirectAttributes.addFlashAttribute("message", "Klient dodany");
-        return "redirect:/create/client";
+        boolean res = createClientService.createClient(clientDTO);
+        if (res){
+            clientDTO.setCode(1);
+            model.addAttribute("clientData",clientDTO);
+        }
+        return "create-client";
 
     }
 

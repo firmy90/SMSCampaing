@@ -27,5 +27,6 @@ public class ClientDTO {
 
 //    @NotNull
     private String genderGender;
+    private int code;
 
 }

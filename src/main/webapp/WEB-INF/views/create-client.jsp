@@ -23,18 +23,28 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
+
                 <h1 class="h3 mb-0 text-gray-800">Dodaj nowego klienta</h1>
                 <div class="card mb-4 py-3 border-left-primary">
 
+                    <c:if test="${clientData.code==1}">
+                        <div class="card mb-4 py-3 border-bottom-primary">
+                            <div class="card-body">Klient został pomyślnie zmieniony</div>
+                        </div>
+                        <a href="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Powrót na stronę główną</a>
+
+                    </c:if>
+
                     <form:form method="post" action="/create/client" modelAttribute="clientData">
                         <div class="row">
-                            <div class="col-1"><c:out value="${message}"/></div>
+                            <div class="col-1"></div>
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="name">Imię</label>
                                     <form:input type="text" required="true" path="name" id="name"
                                                 class="form-control"
-                                                placeholder="Podaj imię"/>
+                                                placeholder="Podaj imię" max="2020-01-01"/>
                                     <form:errors path="name"/>
                                 </div>
                                 <div class="form-group">
@@ -46,23 +56,23 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="birthdate">Data urodzenia</label>
-                                    <form:input type="date" required="true" path="birthdate" id="birthdate"
+                                    <form:input type="date" required="true" path="birthdate" id="datefield"
                                                 class="form-control"
                                                 placeholder="YYYY-MM-DD"/>
                                     <form:errors path="birthdate"/>
                                 </div>
-                               <div class="card shadow mb-4">
-                                   <div class="card-header py-3">
-                                      <h6 class="m-0 font-weight-bold text-primary">Wybierz płeć:</h6>
-                                   </div>
-                                   <select class="card mb-4 py-3 border-left-primary" name="gender"
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Wybierz płeć:</h6>
+                                    </div>
+                                    <select class="card mb-4 py-3 border-left-primary" name="gender"
                                             id="gender" size="${fn:length(genders)}">
-                                       <c:forEach var="el" items="${genders}">
-                                           <option value="<c:out value="${el.gender}"/>"><c:out
-                                                   value="${el.gender}"/></option>
-                                       </c:forEach>
-                                   </select>
-                               </div>
+                                        <c:forEach var="el" items="${genders}">
+                                            <option value="<c:out value="${el.gender}"/>"><c:out
+                                                    value="${el.gender}"/></option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="col-lg-4">
@@ -83,7 +93,7 @@
                         <div class="col-lg-4">
 
                             <button class="btn btn-primary" type="submit">Dodaj klienta</button>
-<%--                            <button class="btn btn-secondary" type="reset">Wyczyść dane</button>--%>
+                                <%--                            <button class="btn btn-secondary" type="reset">Wyczyść dane</button>--%>
                         </div>
                         <sec:csrfInput/>
                     </form:form>
@@ -94,7 +104,7 @@
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
-
+    <script type="text/javascript" defer src="/js/calendar.js"></script>
 </body>
 
 </html>

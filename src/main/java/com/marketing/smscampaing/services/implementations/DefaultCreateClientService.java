@@ -12,9 +12,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Service
 @Slf4j
@@ -25,7 +25,7 @@ public class DefaultCreateClientService implements CreateClientService {
     private final GenderRepository genderRepository;
     private final OccupationRepository occupationRepository;
     @Override
-    public void createClient(ClientDTO clientDTO) {
+    public boolean createClient(ClientDTO clientDTO) {
         Client client = new Client();
         Gender firstByGender = genderRepository.findFirstByGender(clientDTO.getGenderGender());
         Occupation firstByOccupation = occupationRepository.findFirstByOccupation(clientDTO.getOccupationOccupation());
@@ -36,8 +36,8 @@ public class DefaultCreateClientService implements CreateClientService {
         client.setOccupationId(firstByOccupation.getId());
         client.setGender(firstByGender);
         client.setBirthdate(LocalDate.parse(clientDTO.getBirthdate()));
-        log.debug("client after mapping and setting occpuation and gender: {}", client);
-        userInsertRepository.createClient(client);
+        log.debug("client after mapping and setting occupation and gender: {}", client);
+        return userInsertRepository.createClient(client);
 
     }
 }
