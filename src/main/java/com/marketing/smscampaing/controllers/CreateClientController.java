@@ -3,7 +3,6 @@ package com.marketing.smscampaing.controllers;
 import com.marketing.smscampaing.dtos.ClientDTO;
 import com.marketing.smscampaing.dtos.GenderDTO;
 import com.marketing.smscampaing.dtos.OccupationDTO;
-import com.marketing.smscampaing.model.domain.entity.Gender;
 import com.marketing.smscampaing.services.interfaces.CreateClientService;
 import com.marketing.smscampaing.services.interfaces.GenderService;
 import com.marketing.smscampaing.services.interfaces.OccupationService;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -73,7 +71,7 @@ public class CreateClientController {
             clientDTO.setCode(1);
             model.addAttribute("clientData",clientDTO);
         }
-        return "create-client";
+        return "redirect:/show/clients";
 
     }
 
