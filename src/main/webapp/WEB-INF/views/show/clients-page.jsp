@@ -25,6 +25,26 @@
                 <h1 class="h3 mb-0 text-gray-800">Klienci</h1>
                 <div class="card mb-4 py-3 border-left-primary">
                     <div class="card-body">
+                        <c:if test="${clientsDTOPage.hasPrevious()}">
+                            <a href=" <c:url value="/show/clients/${pageNumber-1}/${clientsDTOPage.size}"/>" class="btn hidden btn-light btn-icon-split">
+                               <span class="icon text-gray-600"> <i class="fas fa-arrow-left"></i>
+                                </span>
+                                <span class="text">Previous Page</span>
+                            </a>
+                        </c:if>
+                        <c:if test="${clientsDTOPage.hasNext()}">
+                            <a href=" <c:url value="/show/clients/${pageNumber+1}/${clientsDTOPage.size}"/>" class="btn btn-light btn-icon-split">
+                                <span class="icon text-gray-600">
+                                  <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="text">Next Page</span>
+                            </a>
+                        </c:if>
+                        <p>Strona <c:out value="${clientsDTOPage.number+1}"> </c:out>
+                            z <c:out value="${clientsDTOPage.totalPages}"></c:out></p>
+                        <div class="mb-4"></div>
+
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -37,13 +57,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="client" items="${clientsPage}" varStatus="index">
+                                <c:forEach var="client" items="${clientsDTOList}" varStatus="index">
                                     <tr>
-                                        <td><c:out value="${index.count}"/></td>
+                                        <td><c:out value="${index.count+(pageNumber-1)*clientsDTOPage.size}"/></td>
                                         <td><c:out value="${client.name}"/> <c:out value="${client.surname}"/></td>
                                         <td><c:out value="${client.birthdate}"/></td>
-                                        <td><c:out value="${client.genderGender}"/></td>
-                                        <td><c:out value="${client.occupationOccupation}"/></td>
+                                        <td><c:out value="${client.gender.gender}"/></td>
+                                        <td><c:out value="${client.occupation.occupation}"/></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
