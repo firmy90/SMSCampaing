@@ -1,5 +1,6 @@
 package com.marketing.smscampaing.dtos;
 
+import com.marketing.smscampaing.validation.constraints.CorrectGender;
 import com.marketing.smscampaing.validation.constraints.DateFormat;
 import lombok.Data;
 
@@ -28,6 +29,7 @@ public class ClientDTO {
     private String occupationOccupation;
 
 //    @NotNull
+    @CorrectGender
     private String genderGender;
     private int code;
 

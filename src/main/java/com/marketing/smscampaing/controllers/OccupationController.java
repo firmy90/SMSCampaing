@@ -23,6 +23,6 @@ public class OccupationController {
         List<OccupationDTO> occupations = occupationService.showOccupations();
         log.debug("Occupation DTO list: {}", occupations.toString());
         model.addAttribute("occupations", occupations);
-        return "occupations-page";
+        return "/show/occupations-page";
     }
 }

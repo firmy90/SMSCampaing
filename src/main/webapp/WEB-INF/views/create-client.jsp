@@ -72,6 +72,7 @@
                                                     value="${el.gender}"/></option>
                                         </c:forEach>
                                     </select>
+<%--                                    <form:errors path="gender"/>--%>
                                 </div>
                             </div>
 
