@@ -51,14 +51,6 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
         ModelMapper mapper = new ModelMapper();
         Page<CampaingMessageDTO>  map = (Page<CampaingMessageDTO>) mapper.map(all, Page.class);
         log.debug("Page<CampaingMessageDTO>: {}",map);
-//        List<CampaingMessageDTO> allDTO = all.getContent()
-//                .stream().
-//                        map(el -> mapper.map(el, CampaingMessageDTO.class))
-//                .collect(Collectors.toList());
-//        log.debug("List of Message Campaing DTO after mapping: {}", allDTO);
-//        Page<CampaingMessageDTO>  page= new PageImpl<>(allDTO,paging,all.getSize());
-//        log.debug("Page of Message Campaing DTO after mapping: {}", page);
-//        return page;
         return map;
     }
 }

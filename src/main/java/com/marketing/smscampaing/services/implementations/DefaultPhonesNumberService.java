@@ -1,5 +1,6 @@
 package com.marketing.smscampaing.services.implementations;
 
+import com.marketing.smscampaing.dtos.ClientDTO;
 import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
@@ -7,6 +8,10 @@ import com.marketing.smscampaing.services.interfaces.PhonesNumberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -67,4 +72,18 @@ public class DefaultPhonesNumberService implements PhonesNumberService {
         log.debug("Phones from query  after mapping: {}", phonesDTO.toString());
         return phonesDTO;
     }
+
+    @Override
+    public Page<PhoneDTO> findPaginatedDTO(int pageNo, int pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"));
+        Page<Phone> all = phoneNumbersRepository.findAll(paging);
+        log.debug("Page with clients: {}", all);
+        ModelMapper myModel = new ModelMapper();
+        Page<PhoneDTO> phoneDTOS = myModel.map(all, Page.class);
+        log.debug("Page of phone DTO after mapping: {}", phoneDTOS);
+
+        return phoneDTOS;
+    }
 }
+
+

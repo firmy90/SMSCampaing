@@ -5,6 +5,7 @@ import com.marketing.smscampaing.dtos.PhoneDTO;
 import com.marketing.smscampaing.model.domain.entity.*;
 import com.marketing.smscampaing.model.repositories.*;
 import com.marketing.smscampaing.services.interfaces.SendMessageService;
+import com.marketing.smscampaing.util.MainAPI;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -28,11 +29,11 @@ public class DefaultSendMessageService implements SendMessageService {
     @Override
     public int sendMessage(PhoneDTO phoneDTO, CampaingMessageDTO campaingMessageDTO) throws IOException {
         if (campaingMessageDTO.getAuthorizationParameter().getId() == 1) {
-//            int code = MainAPI.sendMessagesToClient(campaingMessageDTO.getAuthorizationParameter().getUrl(),
-//                    phoneDTO.getNumber(),
-//                    campaingMessageDTO.getContent(),
-//                    campaingMessageDTO.getAuthorizationParameter().getApiKey());
-            int code = 202;
+            int code = MainAPI.sendMessagesToClient(campaingMessageDTO.getAuthorizationParameter().getUrl(),
+                    phoneDTO.getNumber(),
+                    campaingMessageDTO.getContent(),
+                    campaingMessageDTO.getAuthorizationParameter().getApiKey());
+//            int code = 202;
             log.debug("Result code from service: {}", code);
             log.debug("Parameter campaingMessageDTO: {}", campaingMessageDTO);
             log.debug("Parameter phoneDTO: {}", phoneDTO);

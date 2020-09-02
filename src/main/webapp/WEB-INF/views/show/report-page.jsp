@@ -7,6 +7,7 @@
 <%@ page isELIgnored="false" %>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +79,7 @@
                                             <td><c:out value="${el.phone.type.type}"/></td>
                                             <td><c:out value="${el.campaing.cname}"/></td>
                                             <td><c:out value="${el.content}"/></td>
-                                            <td><c:out value="${el.sendingDate}"/></td>
+                                            <td><c:out value="${el.sendingDate}" /> </td>
                                             <td><c:out value="${el.sendingStatus}"/></td>
                                         </tr>
                                     </c:forEach>

@@ -26,6 +26,24 @@
                 <div class="card-body">
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
+                            <c:if test="${phoneDTOPage.hasPrevious()}">
+                                <a href=" <c:url value="/generate/report/${pageNumber-1}/${phoneDTOPage.size}"/>" class="btn hidden btn-light btn-icon-split">
+                               <span class="icon text-gray-600"> <i class="fas fa-arrow-left"></i>
+                                </span>
+                                    <span class="text">Previous Page</span>
+                                </a>
+                            </c:if>
+                            <c:if test="${phoneDTOPage.hasNext()}">
+                                <a href=" <c:url value="/generate/report/${pageNumber+1}/${phoneDTOPage.size}"/>" class="btn btn-light btn-icon-split">
+                                <span class="icon text-gray-600">
+                                  <i class="fas fa-arrow-right"></i>
+                                </span>
+                                    <span class="text">Next Page</span>
+                                </a>
+                            </c:if>
+                            <p>Strona <c:out value="${phoneDTOPage.number+1}"> </c:out>
+                                z <c:out value="${phoneDTOPage.totalPages}"></c:out></p>
+                            <div class="mb-4"></div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -44,16 +62,16 @@
                                     <tbody>
                                     <c:forEach var="el" items="${phones}" varStatus="index">
                                         <tr>
-                                            <td><c:out value="${index.count}"/></td>
-                                            <td><c:out value="${el.clientName}"/> <c:out
-                                                    value="${el.clientSurname}"/></td>
-                                            <td><c:out value="${el.clientGender}"/></td>
-                                            <td><c:out value="${el.clientBirthdate}"/></td>
-                                            <td><c:out value="${el.clientOccupation}"/></td>
-                                            <td><c:out value="${el.countryName}"/></td>
+                                            <td><c:out value="${index.count+(pageNumber-1)*phoneDTOPage.size}"/></td>
+                                            <td><c:out value="${el.client.name}"/> <c:out
+                                                    value="${el.client.surname}"/></td>
+                                            <td><c:out value="${el.client.gender.gender}"/></td>
+                                            <td><c:out value="${el.client.birthdate}"/></td>
+                                            <td><c:out value="${el.client.occupation.occupation}"/></td>
+                                            <td><c:out value="${el.country.name}"/></td>
                                             <td><c:out value="${el.number}"/></td>
-                                            <td><c:out value="${el.purposePurpose}"/></td>
-                                            <td><c:out value="${el.typeType}"/></td>
+                                            <td><c:out value="${el.purpose.purpose}"/></td>
+                                            <td><c:out value="${el.type.type}"/></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
