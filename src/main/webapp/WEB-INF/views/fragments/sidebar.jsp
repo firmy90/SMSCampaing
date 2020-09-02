@@ -38,8 +38,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Dostępne dane:</h6>
                 <a class="collapse-item" href=" <c:url value="/"/>"> Kampanie</a>
-                <a class="collapse-item" href=" <c:url value="/occupations"/>"> Sektory pracy</a>
-                <a class="collapse-item" href=" <c:url value="/phones"/>">Numery telefonów</a>
+                <a class="collapse-item" href=" <c:url value="/show/occupations"/>"> Sektory pracy</a>
+                <a class="collapse-item" href=" <c:url value="/show/phones"/>">Numery telefonów</a>
                 <a class="collapse-item" href=" <c:url value="/show/clients"/>">Klienci</a>
                 <a class="collapse-item" href=" <c:url value="/generate/report"/>">Ostatnie wiadomości</a>
             </div>
@@ -67,6 +67,11 @@
             <a class="nav-link" href="<c:url value="/admin/register"/>">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Zarejestruj użytkownika</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<c:url value="/admin/register/show"/>">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Ostatnia rejestracja</span></a>
         </li>
     </sec:authorize>
         <li class="nav-item">

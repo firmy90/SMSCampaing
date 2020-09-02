@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/phones")
+@RequestMapping("/show/phones")
 public class PhoneNumberController {
     private final PhonesNumberService phonesNumberService;
 
@@ -20,6 +20,6 @@ public class PhoneNumberController {
     public String showAllPhoneNumbers(Model model){
         List<PhoneDTO> phoneDTOS = phonesNumberService.showAllPhones();
         model.addAttribute("phones",phoneDTOS);
-        return "/phones-page";
+        return "/show/phones-page";
     }
 }

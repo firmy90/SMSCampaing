@@ -37,7 +37,7 @@ public class CreateClientController {
         model.addAttribute("occupations", occupations);
         model.addAttribute("clientData",new ClientDTO());
 
-        return "create-client";
+        return "/create-client";
 
     }
 
@@ -59,7 +59,7 @@ public class CreateClientController {
             log.debug("Chosen gender: {}",gender);
             log.debug("Chosen occupation: {}",occupation);
 
-            return "create-client";
+            return "/create-client";
         }
         log.debug("Chosen gender: {}",gender);
         log.debug("Chosen occupation: {}",occupation);

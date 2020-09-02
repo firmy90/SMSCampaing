@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @AllArgsConstructor
-@RequestMapping("/occupations")
+@RequestMapping("/show/occupations")
 public class OccupationController {
     private final OccupationService occupationService;
 

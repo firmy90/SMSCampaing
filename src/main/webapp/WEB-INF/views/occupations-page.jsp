@@ -22,7 +22,7 @@
             <jsp:include page="/WEB-INF/views/fragments/topbar.jsp"/>
             <div class="container-fluid">
                 <jsp:include page="/WEB-INF/views/fragments/page-heading.jsp"/>
-                <h1 class="h3 mb-0 text-gray-800">Sektory pracy</h1>
+                <h1 class="h3 mb-0 text-gray-800">Ostatnie kampanie</h1>
                 <div class="card mb-4 py-3 border-left-primary">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -51,8 +51,12 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/fragments/scripts-footer.jsp"/>
-<script type="text/javascript" defer src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<%--<script type="text/javascript" defer src="/static/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script type="text/javascript" defer src="/static/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
+<%--<script type="text/javascript" defer src="/static/js/demo/datatables-demo.js"></script>--%>
+
 <script type="text/javascript" defer src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" defer src="/vendor/datatables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" defer src="/js/demo/datatables-demo.js"></script>
 
 </body>

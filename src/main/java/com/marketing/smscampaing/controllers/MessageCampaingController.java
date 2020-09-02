@@ -42,7 +42,7 @@ public class MessageCampaingController {
         List<AuthorizationParameterDTO> allAuthorizations = authorizationService.findAllAuthorizations();
         log.debug("\"allAuthorizations\": {}", allAuthorizations);
         model.addAttribute("providers", allAuthorizations);
-        return "/generate-message-page";
+        return "/generate/generate-message-page";
     }
 
     @RequestMapping(value = "/message", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class MessageCampaingController {
         log.debug("phonesFromSession: \"phonesSes\": {}", phonesFromSession);
         CampaingMessageDTO campaingByName = (CampaingMessageDTO) session.getAttribute("campaingByName");
         log.debug("campaingByName from session: {}", campaingByName.toString());
-        return "/generate-confirm-page";
+        return "/generate/generate-confirm-page";
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.POST)
@@ -115,6 +115,6 @@ public class MessageCampaingController {
         model.addAttribute("campaingMessages", campaingMessages);
         int campaingsSize = campaingMessages.size();
         model.addAttribute("campaingsSize", campaingsSize);
-        return"/generate-report-page";
+        return"/generate/generate-report-page";
     }
 }

@@ -78,7 +78,6 @@
                                         <form:errors path="rePassword"/>
                                     </div>
                                     <button class="btn btn-primary" type="submit">Zmień hasło</button>
-                                    <button class="btn btn-secondary" type="reset">Wyczyść dane</button>
                                 </c:if>
                                 <sec:csrfInput/>
                             </form:form>

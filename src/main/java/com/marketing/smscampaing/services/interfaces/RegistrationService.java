@@ -8,4 +8,5 @@ public interface RegistrationService {
     void register(RegistrationDTO registrationDTO);
     int changePassword(ChangePasswordDTO changePasswordDTO);
     ChangePasswordDTO getDataToChangePassword();
+    RegistrationDTO getLastRegisterUser();
 }

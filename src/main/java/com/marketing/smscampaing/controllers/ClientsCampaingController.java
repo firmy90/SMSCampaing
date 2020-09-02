@@ -97,7 +97,7 @@ public class ClientsCampaingController {
         List<CountryDTO> allCountries = countryService.findAllCountries();
         model.addAttribute("allCountries", allCountries);
         log.debug("occupations list: {}", allCountries);
-        return "generate-clients";
+        return "/generate/generate-clients";
 
     }
 

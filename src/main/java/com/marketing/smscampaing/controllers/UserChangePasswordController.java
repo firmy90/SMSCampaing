@@ -29,7 +29,7 @@ public class UserChangePasswordController {
         log.debug("PasswordData: {}", dataToChangePassword);
         model.addAttribute("passwordData", dataToChangePassword);
         log.debug("Data from modelAttribute changePasswordDTO: {}", model.getAttribute("paswordData"));
-        return "change-password-page";
+        return "/change-password-page";
     }
 
     @PostMapping
@@ -39,12 +39,12 @@ public class UserChangePasswordController {
             model.addAttribute("passwordData", changePasswordDTO);
             ChangePasswordDTO passwordData = (ChangePasswordDTO) model.getAttribute("passwordData");
             log.debug("PasswordData taken from model Attribute: {}", passwordData);
-            return "change-password-page";
+            return "/change-password-page";
         }
         int i = registrationService.changePassword(changePasswordDTO);
         log.debug("Return code of updated rows: {}", i);
         changePasswordDTO.setCode(i);
         model.addAttribute("passwordData", changePasswordDTO);
-        return "change-password-page";
+        return "/change-password-page";
     }
 }

@@ -64,5 +64,15 @@ public class DefaultRegistrationService implements RegistrationService {
         return map;
     }
 
+    @Override
+    public RegistrationDTO getLastRegisterUser() {
+        User firstByIdOrderByIdDesc = userRepository.findFirstdOrderByIdDesc();
+        log.debug("User taken from database: {}", firstByIdOrderByIdDesc);
+        RegistrationDTO userMapped = modelMapper.map(firstByIdOrderByIdDesc, RegistrationDTO.class);
+        log.debug("User after mapping to RegistrationDTO: {}", userMapped);
+
+        return userMapped;
+    }
+
 
 }
