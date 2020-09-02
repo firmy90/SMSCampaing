@@ -82,24 +82,6 @@
                                             <td><c:out value="${el.sendingStatus}"/></td>
                                         </tr>
                                     </c:forEach>
-                                    <%--                                    <c:forEach var="el" items="${campaingMessages}" varStatus="index">--%>
-                                    <%--                                        <tr>--%>
-                                    <%--                                            <td><c:out value="${index.count}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.clientName}"/> <c:out--%>
-                                    <%--                                                    value="${el.clientSurname}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.clientGender}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.clientBirthdate}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.clientOccupation}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.phoneCountryName}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.phoneNumber}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.phonePurposePurpose}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.phoneTypeType}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.campaingCname}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.content}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.sendingDate}"/></td>--%>
-                                    <%--                                            <td><c:out value="${el.sendingStatus}"/></td>--%>
-                                    <%--                                        </tr>--%>
-                                    <%--                                    </c:forEach>--%>
                                     </tbody>
                                 </table>
                             </div>
