@@ -95,9 +95,9 @@ public class MessageCampaingController {
                     }
                 }
         );
-        return "redirect:/generate/report/0/5";
+        return "redirect:/generate/report/1/10";
     }
-//    @ResponseBody
+
     @RequestMapping(value = {"/report/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/report", "/report/{pageNoOpt:\\d+}," +
             "/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "", "/{pageNoOpt:\\d+}"},
             method = RequestMethod.GET)
@@ -129,8 +129,8 @@ public class MessageCampaingController {
         int pageNumber = countCorrectNumberPage(campaingMessagesDTOPage.getNumber(), campaingMessagesDTOPage.getTotalPages());
         model.addAttribute("pageNumber",pageNumber+1);
 
-        return"/generate/generate-report-page";
-//        return campaingMessagesDTOList.toString();
+        return"/show/report-page";
+
     }
 
     public int countCorrectNumberPage(int number, int totalPages){
