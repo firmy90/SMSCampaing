@@ -12,10 +12,7 @@ import com.marketing.smscampaing.services.interfaces.CampaingMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +26,7 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
     private final CampaingRepository campaingRepository;
     private final AuthorizationRepository authorizationRepository;
     private final ModelMapper modelMapper;
+
 
     @Override
     public CampaingMessageDTO getCampaingByName(String name, Long id) {
@@ -46,16 +44,22 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
     }
 
     @Override
-    public List<CampaingMessageDTO> findPaginatedDTO(int pageNo, int pageSize) {
+    public Page<CampaingMessageDTO> findPaginatedDTO(int pageNo, int pageSize) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "id"));
         Page<CampaingMessage> all = campaingMessageRepository.findAll(paging);
         log.debug("Page of Message Campaing: {}", all);
         ModelMapper mapper = new ModelMapper();
-        List<CampaingMessageDTO> allDTO = all.toList()
+        Page<CampaingMessageDTO>  map = (Page<CampaingMessageDTO>) mapper.map(all, Page.class);
+        log.debug("Page<CampaingMessageDTO>: {}",map);
+        List<CampaingMessageDTO> allDTO = all.getContent()
                 .stream().
                         map(el -> mapper.map(el, CampaingMessageDTO.class))
                 .collect(Collectors.toList());
-        log.debug("Page of Message Campaing DTO after mapping: {}", allDTO);
-        return allDTO;
+//        log.debug("List of Message Campaing DTO after mapping: {}", allDTO);
+//        Page<CampaingMessageDTO>  page= new PageImpl<>(allDTO,paging,all.getSize());
+//        log.debug("Page of Message Campaing DTO after mapping: {}", page);
+//        return page;
+        return map;
     }
 }
+

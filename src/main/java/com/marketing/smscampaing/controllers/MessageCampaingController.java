@@ -4,12 +4,14 @@ import com.marketing.smscampaing.dtos.AuthorizationParameterDTO;
 import com.marketing.smscampaing.dtos.CampaingDTO;
 import com.marketing.smscampaing.dtos.CampaingMessageDTO;
 import com.marketing.smscampaing.dtos.PhoneDTO;
+import com.marketing.smscampaing.model.domain.entity.CampaingMessage;
 import com.marketing.smscampaing.services.interfaces.AuthorizationService;
 import com.marketing.smscampaing.services.interfaces.CampaingMessageService;
 import com.marketing.smscampaing.services.interfaces.CampaingService;
 import com.marketing.smscampaing.services.interfaces.SendMessageService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -95,26 +97,49 @@ public class MessageCampaingController {
         );
         return "redirect:/generate/report/0/5";
     }
-
-    @RequestMapping(value = {"/report/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/report", "/report/{pageNoOpt:\\d+}"}, method = RequestMethod.GET)
+//    @ResponseBody
+    @RequestMapping(value = {"/report/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/report", "/report/{pageNoOpt:\\d+}," +
+            "/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "", "/{pageNoOpt:\\d+}"},
+            method = RequestMethod.GET)
     public String showLastMessageReports(@PathVariable("pageNoOpt") Optional<Integer> pageNoOpt, @PathVariable("pageSizeOpt") Optional<Integer> pageSizeOpt, Model model) {
-        int pageNo = 0;
-        int pageSize = 5;
-        if (pageNoOpt.isPresent()) {
-            if(pageNoOpt.get()>=0){
-                pageNo = pageNoOpt.get();
-            }
+        int pageNo = pageNoOpt.orElse(1);
+        int pageSize = pageSizeOpt.orElse(10);
+        if (pageNo<=0){
+            pageNo=1;
         }
-        if (pageSizeOpt.isPresent()) {
-            if (pageSizeOpt.get() > 0) {
-                pageSize = pageSizeOpt.get();
-            }
+        if (pageSize<=0){
+            pageSize=10;
         }
-        List<CampaingMessageDTO> campaingMessages = campaingMessageService.findPaginatedDTO(pageNo, pageSize);
-        log.debug("CampaingMessageDTO List: {}",campaingMessages);
-        model.addAttribute("campaingMessages", campaingMessages);
-        int campaingsSize = campaingMessages.size();
+        Page<CampaingMessageDTO> campaingMessagesDTOPage = campaingMessageService.findPaginatedDTO(pageNo-1, pageSize);
+        List<CampaingMessageDTO> campaingMessagesDTOList = campaingMessagesDTOPage.getContent();
+        log.debug("CampaingMessageDTO Page: {}",campaingMessagesDTOPage);
+        log.debug("CampaingMessageDTO List: {}",campaingMessagesDTOList);
+        model.addAttribute("campaingMessagesPage", campaingMessagesDTOPage);
+        model.addAttribute("campaingMessagesList", campaingMessagesDTOList);
+        int campaingsSize = campaingMessagesDTOList.size();
+        log.debug("Campaing message hasNext: {}",campaingMessagesDTOPage.hasNext());
+        log.debug("Campaing message hasPrevious: {}",campaingMessagesDTOPage.hasPrevious());
         model.addAttribute("campaingsSize", campaingsSize);
+        int totalPages = campaingMessagesDTOPage.getTotalPages();
+        long totalElements = campaingMessagesDTOPage.getTotalElements();
+        int number = campaingMessagesDTOPage.getNumber();
+        log.debug("totalPages: {}", totalPages);
+        log.debug("totalElements: {}",totalElements);
+        log.debug("number: {}",number);
+        int pageNumber = countCorrectNumberPage(campaingMessagesDTOPage.getNumber(), campaingMessagesDTOPage.getTotalPages());
+        model.addAttribute("pageNumber",pageNumber+1);
+
         return"/generate/generate-report-page";
+//        return campaingMessagesDTOList.toString();
+    }
+
+    public int countCorrectNumberPage(int number, int totalPages){
+        if (number<0){
+            return 1;
+        }
+        if (number>totalPages){
+            return totalPages+1;
+        }
+        return number;
     }
 }

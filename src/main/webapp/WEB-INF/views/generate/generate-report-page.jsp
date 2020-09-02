@@ -26,6 +26,24 @@
                 <div class="card-body">
                     <div class="card mb-4 py-3 border-left-primary">
                         <div class="card-body">
+                            <c:if test="${campaingMessagesPage.hasPrevious()}">
+                            <a href=" <c:url value="/generate/report/${pageNumber-1}/${campaingMessagesPage.size}"/>" class="btn hidden btn-light btn-icon-split">
+                               <span class="icon text-gray-600"> <i class="fas fa-arrow-left"></i>
+                                </span>
+                                <span class="text">Previous Page</span>
+                            </a>
+                            </c:if>
+                                    <c:if test="${campaingMessagesPage.hasNext()}">
+                            <a href=" <c:url value="/generate/report/${pageNumber+1}/${campaingMessagesPage.size}"/>" class="btn btn-light btn-icon-split">
+                                <span class="icon text-gray-600">
+                                  <i class="fas fa-arrow-right"></i>
+                                </span>
+                                <span class="text">Next Page</span>
+                            </a>
+                                    </c:if>
+                                <p>Strona <c:out value="${campaingMessagesPage.number+1}"> </c:out>
+                                    z <c:out value="${campaingMessagesPage.totalPages}"></c:out></p>
+                            <div class="mb-4"></div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -46,24 +64,42 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="el" items="${campaingMessages}" varStatus="index">
+                                    <c:forEach var="el" items="${campaingMessagesList}" varStatus="index">
                                         <tr>
                                             <td><c:out value="${index.count}"/></td>
-                                            <td><c:out value="${el.clientName}"/> <c:out
-                                                    value="${el.clientSurname}"/></td>
-                                            <td><c:out value="${el.clientGender}"/></td>
-                                            <td><c:out value="${el.clientBirthdate}"/></td>
-                                            <td><c:out value="${el.clientOccupation}"/></td>
-                                            <td><c:out value="${el.phoneCountryName}"/></td>
-                                            <td><c:out value="${el.phoneNumber}"/></td>
-                                            <td><c:out value="${el.phonePurposePurpose}"/></td>
-                                            <td><c:out value="${el.phoneTypeType}"/></td>
-                                            <td><c:out value="${el.campaingCname}"/></td>
+                                            <td><c:out value="${el.client.name}"/> <c:out
+                                                    value="${el.client.surname}"/></td>
+                                            <td><c:out value="${el.client.gender.gender}"/></td>
+                                            <td><c:out value="${el.client.birthdate}"/></td>
+                                            <td><c:out value="${el.client.occupation.occupation}"/></td>
+                                            <td><c:out value="${el.phone.country.name}"/></td>
+                                            <td><c:out value="${el.phone.number}"/></td>
+                                            <td><c:out value="${el.phone.purpose.purpose}"/></td>
+                                            <td><c:out value="${el.phone.type.type}"/></td>
+                                            <td><c:out value="${el.campaing.cname}"/></td>
                                             <td><c:out value="${el.content}"/></td>
                                             <td><c:out value="${el.sendingDate}"/></td>
                                             <td><c:out value="${el.sendingStatus}"/></td>
                                         </tr>
                                     </c:forEach>
+                                    <%--                                    <c:forEach var="el" items="${campaingMessages}" varStatus="index">--%>
+                                    <%--                                        <tr>--%>
+                                    <%--                                            <td><c:out value="${index.count}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.clientName}"/> <c:out--%>
+                                    <%--                                                    value="${el.clientSurname}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.clientGender}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.clientBirthdate}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.clientOccupation}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.phoneCountryName}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.phoneNumber}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.phonePurposePurpose}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.phoneTypeType}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.campaingCname}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.content}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.sendingDate}"/></td>--%>
+                                    <%--                                            <td><c:out value="${el.sendingStatus}"/></td>--%>
+                                    <%--                                        </tr>--%>
+                                    <%--                                    </c:forEach>--%>
                                     </tbody>
                                 </table>
                             </div>
