@@ -19,6 +19,7 @@ import java.util.Optional;
 public class PhoneNumberController {
     private final PhonesNumberService phonesNumberService;
 
+    // TODO Tutaj również Optional w parametrach i zmienne ścieżki zamiast poprawnie parametrów żądania
     @RequestMapping(value = {"/phones/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/phones", "/phones/{pageNoOpt:\\d+}"}, method = RequestMethod.GET)
     public String showAllPhoneNumbers(@PathVariable("pageNoOpt") Optional<Integer> pageNoOpt, @PathVariable("pageSizeOpt") Optional<Integer> pageSizeOpt, Model model) {
         int pageNo = pageNoOpt.orElse(1);

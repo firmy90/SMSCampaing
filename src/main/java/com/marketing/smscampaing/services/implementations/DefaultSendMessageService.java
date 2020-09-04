@@ -26,6 +26,7 @@ public class DefaultSendMessageService implements SendMessageService {
     private final CampaingRepository campaingRepository;
     private final ClientsCampaingRepository clientsCampaingRepository;
     private final PhoneNumbersRepository phoneNumbersRepository;
+
     @Override
     public int sendMessage(PhoneDTO phoneDTO, CampaingMessageDTO campaingMessageDTO) throws IOException {
         if (campaingMessageDTO.getAuthorizationParameter().getId() == 1) {

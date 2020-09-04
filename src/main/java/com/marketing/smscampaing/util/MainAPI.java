@@ -10,11 +10,19 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 @Slf4j
+// TODO Dlaczego to nie jest serwis?
+// TODO Dlaczego nie użyjemy HttpClient?
+// TODO Przejść na asynchroniczną wysyłkę: Eveny lub JMS (np. RabitMQ)
 public class MainAPI {
 
+
     public static int sendMessagesToClient(String url, String to, String content, String auth) throws IOException {
+
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(to);
 
@@ -41,6 +49,18 @@ public class MainAPI {
         new InputStreamReader(connection.getInputStream());
         int code = connection.getResponseCode();
         log.debug("sendMessagesToClient: Phone number: {}, Code of sending messages:{}", to, code);
+
+        HttpClient client = HttpClient.newHttpClient();
+        try {
+            HttpResponse<String> response = client.send(HttpRequest.newBuilder()
+                            .header("Content-Type", "application/json")
+                            .POST(HttpRequest.BodyPublishers.ofString(jsonObject.toString()))
+                            .build(),
+                    HttpResponse.BodyHandlers.ofString());
+            code = response.statusCode();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return code;
 
     }

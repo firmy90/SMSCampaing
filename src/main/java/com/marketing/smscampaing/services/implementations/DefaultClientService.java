@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class DefaultClientService implements ClientService {
     private final ClientRepository clientRepository;
 
+    // TODO Czemu zwracamy Page a nie po prostu listę?
     @Override
     public Page<ClientDTO> findPaginatedDTO(int pageNo, int pageSize) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.DESC, "uid"));

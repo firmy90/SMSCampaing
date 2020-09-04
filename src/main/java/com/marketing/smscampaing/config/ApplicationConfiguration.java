@@ -9,6 +9,9 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 public class ApplicationConfiguration {
 
+    // TODO Niepotrzebna konfiguracja pliku z wiadomościami walidacyjnymi: Spring Boot używa takiego domyślnie
+
+
     @Bean
     public MessageSource messageSource(){
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

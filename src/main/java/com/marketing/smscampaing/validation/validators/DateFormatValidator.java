@@ -35,6 +35,7 @@ public class DateFormatValidator implements ConstraintValidator<DateFormat, Stri
         if (s==null){
             return true;
         }
+        // TODO Tutaj chyba zamiast robić matchera, to lepiej wywołać parse i złapać wyjątek, będzie czytelniejsze
         if (DATE_PATTERN.matcher(s).matches()) {
             LocalDate date = LocalDate.parse(s);
             return date.isBefore(LocalDate.now());

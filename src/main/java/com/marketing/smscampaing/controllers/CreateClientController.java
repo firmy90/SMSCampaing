@@ -26,12 +26,13 @@ public class CreateClientController {
     private final OccupationService occupationService;
     private final CreateClientService createClientService;
 
+    @ModelAttribute("genders")
+    public List<GenderDTO> genders() {
+        return genderService.findAllGenders();
+    }
+
     @GetMapping
     public String prepareClient(@ModelAttribute("clientData") ClientDTO clientDTO,Model model) {
-        List<GenderDTO> genders = genderService.findAllGenders();
-        log.debug("genders: {}", genders);
-        model.addAttribute("genders", genders);
-
         List<OccupationDTO> occupations = occupationService.showOccupations();
         log.debug("occupations: {}", occupations);
         model.addAttribute("occupations", occupations);
@@ -41,16 +42,14 @@ public class CreateClientController {
 
     }
 
+    // TODO Dlaczego gender i occupation łapiemy osobno, a nie w obiekcie DTO?
     @PostMapping
     public String createClient(@ModelAttribute("clientData") @Valid ClientDTO clientDTO, BindingResult bindingResult,
                                @RequestParam(required = false, defaultValue = "UNKNOWN") String gender,
                                @RequestParam(required = false, defaultValue = "Other") String occupation,
                                Model model) {
         if(bindingResult.hasErrors()){
-            List<GenderDTO> genders = genderService.findAllGenders();
-            log.debug("genders: {}", genders);
-            model.addAttribute("genders", genders);
-
+            // TODO Słowniki powinny być wystawione metodą publiczną z @ModelAttribute, to wtedy nie ma potrzeby dodawać ich i w @GetMapping i w @PostMapping
             List<OccupationDTO> occupations = occupationService.showOccupations();
             log.debug("occupations: {}", occupations);
             model.addAttribute("occupations", occupations);

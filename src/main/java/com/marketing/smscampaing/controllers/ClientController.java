@@ -22,6 +22,9 @@ public class ClientController {
     private final ClientService clientService;
 
 
+    // TODO Optionala używamy tylko w wynikach metod, nigdy jako pola albo parametry
+    // TODO Jeżeli chcemy opcjonalne wartości, to nie używamy zmiennych ścieżki, a parametrów żądania
+
     @RequestMapping(value = {"/clients/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/clients", "/clients/{pageNoOpt:\\d+}"}, method = RequestMethod.GET)
     public String showClients(@PathVariable("pageNoOpt") Optional<Integer> pageNoOpt, @PathVariable("pageSizeOpt") Optional<Integer> pageSizeOpt, Model model) {
         int pageNo = pageNoOpt.orElse(1);

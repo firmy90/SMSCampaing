@@ -25,6 +25,7 @@ import java.util.Optional;
 @Slf4j
 @AllArgsConstructor
 @RequestMapping("/generate")
+// TODO Czemu tutaj jest używane HttpSession????
 public class MessageCampaingController {
     private final CampaingService campaingService;
     private final CampaingMessageService campaingMessageService;
@@ -34,6 +35,7 @@ public class MessageCampaingController {
     @GetMapping
     @RequestMapping("/message")
     public String showGeneratedPhoneNumbers(Model model, HttpSession session) {
+        // TODO Czemu próbujemy coś wyciągnać z modelu na start żądania?
         List<PhoneDTO> phonesList = (List<PhoneDTO>) model.getAttribute("phones");
         log.debug("MessageCampaingController: Model with atrribute \"phones\": {}", phonesList);
         List<PhoneDTO> phonesFromSession = (List<PhoneDTO>) session.getAttribute("phonesSes");
@@ -98,6 +100,7 @@ public class MessageCampaingController {
         return "redirect:/generate/report/1/10";
     }
 
+    // TODO Lepiej użyć parametrów żądania zamiast zmiennych ścieżki i nie używać Optional w parametrach
     @RequestMapping(value = {"/report/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "/report", "/report/{pageNoOpt:\\d+}," +
             "/{pageNoOpt:\\d+}/{pageSizeOpt:\\d+}", "", "/{pageNoOpt:\\d+}"},
             method = RequestMethod.GET)

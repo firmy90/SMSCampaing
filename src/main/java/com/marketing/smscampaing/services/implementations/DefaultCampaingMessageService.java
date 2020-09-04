@@ -28,6 +28,7 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
     private final ModelMapper modelMapper;
 
 
+    // TODO ZAstanowić się czy nie lepiej zrobić jeden większy log.debug zamiast po jednym do każdego wyniku z serwisu
     @Override
     public CampaingMessageDTO getCampaingByName(String name, Long id) {
         Campaing firstByCname = campaingRepository.findFirstByCname(name);
@@ -49,6 +50,7 @@ public class DefaultCampaingMessageService implements CampaingMessageService {
         Page<CampaingMessage> all = campaingMessageRepository.findAll(paging);
         log.debug("Page of Message Campaing: {}", all);
         ModelMapper mapper = new ModelMapper();
+        // TODO Tutaj jest na pewno coś nie tak, bo mapujemy zawartość obiektu Page<CampaingMessage> na Page<CampainMessageDTO>, hę?
         Page<CampaingMessageDTO>  map = (Page<CampaingMessageDTO>) mapper.map(all, Page.class);
         log.debug("Page<CampaingMessageDTO>: {}",map);
         return map;

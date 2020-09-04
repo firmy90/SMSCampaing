@@ -23,6 +23,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+        // TODO Jak się zarejestrować w aplikacji?
+
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()

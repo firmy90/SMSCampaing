@@ -18,6 +18,7 @@ import javax.validation.Valid;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/change/password")
+// TODO Zmienić nazwy metod :)
 public class UserChangePasswordController {
     private final RegistrationService registrationService;
 
@@ -25,6 +26,7 @@ public class UserChangePasswordController {
     @GetMapping
     public String prepareRegistrationPage(@ModelAttribute("passwordData") ChangePasswordDTO changePasswordDTO, Model model) {
         ChangePasswordDTO dataToChangePassword = registrationService.getDataToChangePassword();
+        // TODO Tą linijkę poniżej przenieść do serwisu :)
         dataToChangePassword.setPassword(null);
         log.debug("PasswordData: {}", dataToChangePassword);
         model.addAttribute("passwordData", dataToChangePassword);
@@ -41,6 +43,7 @@ public class UserChangePasswordController {
             log.debug("PasswordData taken from model Attribute: {}", passwordData);
             return "/change-password-page";
         }
+        // TODO Zamiast tego mechanizmu lepiej byłoby użyć właśnie RedirectAttributes i informacja o zmianie hasła na nowej stronie
         int i = registrationService.changePassword(changePasswordDTO);
         log.debug("Return code of updated rows: {}", i);
         changePasswordDTO.setCode(i);

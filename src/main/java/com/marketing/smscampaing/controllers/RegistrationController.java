@@ -37,13 +37,16 @@ public class RegistrationController {
         }
         registrationService.register(registrationDTO);
         log.debug("Newly added user: {}", registrationDTO);
+        // TODO Po co używany jest model i coś do niego wstawiane skoro robimy na końcu redirect?
         model.addAttribute("registrationData", registrationDTO);
+        // TODO Nazwy atrybutów z małej :)
         redirectAttributes.addFlashAttribute("AttributeUsername", registrationDTO.getUsername());
         redirectAttributes.addFlashAttribute("AttributeName", registrationDTO.getName());
         redirectAttributes.addFlashAttribute("AttributeSurname", registrationDTO.getSurname());
         return "redirect:/admin/register/show";
     }
 
+    // TODO registrationDTO nie jest używany, więc chyba niepotrzebny
     @GetMapping("/show")
     public String showAddedUser(@ModelAttribute("registrationData") RegistrationDTO registrationDTO, Model model) {
         String attributeUsername = (String) model.getAttribute("AttributeUsername");
@@ -51,6 +54,7 @@ public class RegistrationController {
         log.debug("Model AttributeName: {}", model.getAttribute("AttributeName"));
         log.debug("Model AttributeSurname: {}", model.getAttribute("AttributeSurname"));
         if (attributeUsername==null){
+            // TODO To jest BARDZO ZŁY POMYSŁ :) --- to jednak jest dobry pomysł
             RegistrationDTO lastRegisterUser = registrationService.getLastRegisterUser();
             log.debug("Model AttributeUsername from database: {}", lastRegisterUser.getUsername());
             log.debug("Model AttributeName from database: {}", lastRegisterUser.getName());
